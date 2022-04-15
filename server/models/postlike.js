@@ -8,21 +8,14 @@ const PostSchema = new Schema({
         ref: 'user',
         require: true
     },
-    content: {
-        type: String,
+    post_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'post',
         require: true
 
     },
-    image:[
-        {  
-            path:{
-                type:String,
-            }
-        }
-    ],
-    status: {
+    comment: {
         type:String,
-        enum :['public','pivated']
     },
     createdAt:{
         type : new Date,

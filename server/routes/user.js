@@ -4,6 +4,7 @@ const route = express.Router()
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
 const verifyToken = require('../middleware/auth')
+const { single_upload } = require('../middleware/upload')
 
 // api/auth
 
@@ -34,9 +35,9 @@ route.get('/',verifyToken,async(req,res)=>{
 //api/auth/register
 //register method
 //public
-route.post('/register', async (req,res) =>{
+route.post('/register',single_upload, async (req,res) =>{
    try {
-        console.log(req.body)
+        console.log(req.file)
         const {firstName,lastName,email,password} = req.body
 
         if(!firstName || !lastName || !email || !password){
@@ -56,6 +57,7 @@ route.post('/register', async (req,res) =>{
 
         const hashpassword = await argon2.hash(password)
         const newUser = new User({
+            avata:req.file.filename,
             firstName,
             lastName,
             email,
@@ -63,7 +65,7 @@ route.post('/register', async (req,res) =>{
         })
         await newUser.save()
 
-        //khi tạo ra 1 user mới thì tạo cho user đó 1 cart rỗng
+        
         const accessToken = jwt.sign({
             userId:newUser._id
         },process.env.SECRET_TOKEN_SIGN)
@@ -71,7 +73,6 @@ route.post('/register', async (req,res) =>{
         res.status(200).json({
             message:'Register successfully',
             success:true,
-            user:newUser,
             accessToken
         })
    } catch (error) {

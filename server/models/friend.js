@@ -14,6 +14,14 @@ const FriendSchema = new Schema({
             }
         }
     ],
+    request: [
+        {
+            id:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref:'user'
+            }
+        }
+    ],
     pendings: [
         {
             id:{

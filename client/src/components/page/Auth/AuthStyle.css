@@ -1,0 +1,19 @@
+.auth-page{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:#e9ebed;
+
+}
+.auth-ct{
+    width: 1200px;
+    max-width: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.auth-ct-left p {
+    font-size: 26px;
+    margin-right: 33px;
+}

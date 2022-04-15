@@ -26,5 +26,5 @@ const upload = multer({
 
 
 const multi_upload = upload.array('photos',99)
-
-module.exports = multi_upload
+const single_upload = upload.single('photo')
+module.exports = {single_upload , multi_upload}

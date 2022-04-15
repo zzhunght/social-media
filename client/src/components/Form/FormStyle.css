@@ -1,0 +1,67 @@
+.form {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 20px;
+    width: 400px;
+    height: auto;
+    box-sizing: border-box;
+    padding-bottom: 50px;
+
+}
+.form-group{
+
+}
+.form-group input[type="text"],.form-group input[type="password"] {
+    border: 0.5px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    height: 53px;
+    text-indent: 12px;
+    margin-bottom: 15px;
+    outline-width: 0.2px;
+    outline-color: #1289fc5e;
+    box-sizing: border-box;
+}
+.form-group input::placeholder{
+    letter-spacing: 0.4px;
+    font-size: 16px;
+    color: rgb(128, 128, 128);
+}
+.btn.btn-primary {
+    width: 100%;
+    height: 40px;
+    border: none;
+    background: #0079ff;
+    color: #fff;
+    border-radius: 7px;
+    font-size: 19px;
+    cursor:pointer;
+    margin-bottom:15px
+}
+.btn.btn-primary:hover ,.btn.btn-primary.register:hover {
+    opacity: 0.8;
+}
+.btn.btn-primary.register {
+    margin-top: 10px;
+    background: #10e032;
+    margin-bottom:15px
+}
+.form-group input[type="file"] {
+    display:none;
+}
+label.label-upload {
+    margin-bottom: 11px;
+    display: block;
+    cursor: pointer;
+    background: #eaeaea;
+    height: 27px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-pr{
+    width: 40%;
+    margin-bottom:5px
+}
