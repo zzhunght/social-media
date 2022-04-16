@@ -6,14 +6,20 @@
     background-color:#e9ebed;
 
 }
-.auth-ct{
-    width: 1200px;
+.auth-ct {
+    width: 100%;
     max-width: 100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(180deg, #bf65f0,#d927ee, #91d4fd);
+}
+.auth-ct-left {
+    text-align: center;
 }
 .auth-ct-left p {
     font-size: 26px;
-    margin-right: 33px;
+    color: #fff;
 }

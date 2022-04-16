@@ -10,7 +10,7 @@ const PostRoute = require('./routes/post')
 
 
 //
-
+app.use(express.static('uploads'))
 app.use(cors())
 app.use(express.json())
 const connecDb = async ()=>{

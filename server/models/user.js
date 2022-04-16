@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const {Schema} = mongoose
 
 const UserSchema = new Schema({
-    avata:{
+    avatar:{
         type: String
     },
     firstName:{
@@ -20,7 +20,7 @@ const UserSchema = new Schema({
         unique:true
     },
     createdAt:{
-        type:Date,
+        type: Date,
         default: Date.now
     }
 })

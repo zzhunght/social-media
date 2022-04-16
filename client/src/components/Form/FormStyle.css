@@ -1,12 +1,17 @@
 .form {
-    background-color: #fff;
+    /* background-color: #fff; */
     border-radius: 7px;
     padding: 20px;
-    width: 400px;
+    width:94%;
     height: auto;
     box-sizing: border-box;
     padding-bottom: 50px;
 
+}
+.auht-ct-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .form-group{
 

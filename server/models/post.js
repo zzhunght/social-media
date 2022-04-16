@@ -22,10 +22,30 @@ const PostSchema = new Schema({
     ],
     status: {
         type:String,
-        enum :['public','pivated']
+        enum :['public','pivate'],
+        default:'public'
     },
+    like:[
+        {
+            id:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref: 'user',
+            }
+        }
+    ],
+    comment:[
+        {
+            id:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref: 'user',
+            },
+            text:{
+                type:String,
+            }
+        }
+    ],
     createdAt:{
-        type : new Date,
+        type :Date,
         default: Date.now
     }
     

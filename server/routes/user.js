@@ -35,10 +35,9 @@ route.get('/',verifyToken,async(req,res)=>{
 //api/auth/register
 //register method
 //public
-route.post('/register',single_upload, async (req,res) =>{
+route.post('/register', async (req,res) =>{
    try {
-        console.log(req.file)
-        const {firstName,lastName,email,password} = req.body
+        const {firstName,lastName,email,password,avatar} = req.body
 
         if(!firstName || !lastName || !email || !password){
             return res.status(400).json({
@@ -57,7 +56,7 @@ route.post('/register',single_upload, async (req,res) =>{
 
         const hashpassword = await argon2.hash(password)
         const newUser = new User({
-            avata:req.file.filename,
+            avatar:avatar,
             firstName,
             lastName,
             email,

@@ -5,23 +5,25 @@
     justify-content:space-between
 }
 .navbar-left{
-    width: 19.5%;
-    padding-left:16px;
+    padding-left:10px;
     display:flex;
     align-items:center
 }
-.navbar-mid{
-    width: 61%;
-}
 .navbar-right{
-    width: 19.5%;
+    padding-right:10px;
+    display:flex;
+    align-items:center
+}
 
-}
-.logo{
-    width: 40px;
-}
-.logo img{
-    width: 100%;
+
+p.logo-brand {
+    font-size: 28px;
+    margin: 0;
+    font-weight: 700;
+    background: linear-gradient(to right, #b259d2 0%, #28a8a3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 .seacrh-box {
     display: flex;
@@ -29,10 +31,7 @@
     height: 40px;
     padding-left: 15px;
     margin-left: 10px;
-    background: #f0f2f5;
-    border-radius: 19px;
     overflow: hidden;
-    padding-right: 15px;
 
 }
 input.search-box {
@@ -40,10 +39,10 @@ input.search-box {
     outline: none;
     text-indent: 10px;
     font-size: 15px;
-    background: #f0f2f5;
     width: 80%; 
     flex:1;
     overflow: hidden;
+    display: none;
 
 }
 input.search-box::placeholder{
@@ -51,3 +50,55 @@ input.search-box::placeholder{
 }
 
 
+.icon-search {
+    font-size: 21px;
+    width: 30px;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+}
+
+
+.nav-bt {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 22px;
+    background: #fff;
+    height: 50px;
+    margin: 0 10px;
+    border-radius: 10px;
+    display:flex;
+}
+.nav-bt-l{
+    flex: 1;
+    display:flex;
+    align-items: center;
+    justify-content:space-between;
+}
+.nav-bt-i {
+    flex: 1 1;
+    display: flex;
+    justify-content: center;
+    font-size: 19px;
+}
+.nav-bt-i-icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.nav-bt-i-icon.active {
+    background: #00b3ff;
+    border-radius: 50%;
+    fill: #fff;
+    position: relative;
+    transform: translateY(-15px);
+}
+.nav-bt-i-icon.active svg{
+    fill: #fff;
+}
+.nav-bt-i-icon .anticon svg {
+    display: inline-block;
+    fill: #494949;
+}
