@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BrowserRouter,
   Routes,
@@ -12,6 +12,8 @@ import Content from './components/page/Content/Content';
 import NavBottom from './components/Nav/NavBottom';
 
 function App() {
+ 
+
   return (
     <BrowserRouter>
     <Routes>
@@ -20,7 +22,8 @@ function App() {
         <Route exact path="register" element={ <Register/>} />
         <Route exact path="/home" element={ <Content/>} />
     </Routes>
-      <NavBottom />
+    <NavBottom/>
+      
     </BrowserRouter>
   );
 }

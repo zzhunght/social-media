@@ -8,7 +8,9 @@ export const PostContext = createContext()
 
 const PostContextProvider = ({children})=>{
     const [postState,dispath] = useReducer(PostReducer,{
-        posts:[],
+        posts:[
+
+        ],
         postLoading:true,
     })
     
@@ -24,7 +26,69 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
-    const postvalue = {postPost,postState}
+    const getPost = async (page) =>{
+        try {
+            const res = await axios.get(`${ApiUrl}/post?page=${page}`)
+            if(res.data.success){
+                dispath({
+                    type: 'SET_POST',
+                    payload:{
+                        postLoading:false,
+                        posts:res.data.posts
+                    }
+                })
+                console.log(postState)
+            }
+        } catch (error) {
+            if (error.response ) return error.response
+            return {
+                success:false,
+                message:error.message
+            }
+        }
+    }
+    const likePost = async (id,user,pageIndex) =>{
+        try {
+            const res = await axios.patch(`${ApiUrl}/post/like`,{id,user})
+
+            if(res.data.success){
+                dispath({
+                    type: 'LIKE_POST',
+                    payload:{
+                        post:res.data.post,
+                        pageIndex:pageIndex
+                    }
+                })
+            }
+        } catch (error) {
+            if (error.response ) return error.response
+            return {
+                success:false,
+                message:error.message
+            }
+        }
+    }
+    const removeLike = async (id,user,pageIndex) =>{
+        try {
+            const res = await axios.patch(`${ApiUrl}/post/remove-like`,{id,user})
+            if(res.data.success){
+                dispath({
+                    type: 'REMOVE_LIKE_POST',
+                    payload:{
+                        post:res.data.post,
+                        pageIndex:pageIndex
+                    }
+                })
+            }
+        } catch (error) {
+            if (error.response ) return error.response
+            return {
+                success:false,
+                message:error.message
+            }
+        }
+    }
+    const postvalue = {postPost,likePost,removeLike,postState,getPost}
     return (
         <PostContext.Provider value={postvalue}>
             {children}

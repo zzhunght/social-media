@@ -122,6 +122,7 @@ function RegisterForm() {
       <button
        className="btn btn-primary register"
        onClick={(e)=>onSubmit(e)}
+       disable={loading ? "true" : "false"}
       > 
        {loading ? <LoadingOutlined />: ''} Đăng ký
       </button>

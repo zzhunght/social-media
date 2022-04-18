@@ -6,8 +6,18 @@ const Post = require('../models/post')
 
 //get post 
 route.get('/', async (req,res)=>{
+    let skip = 0;
+    if(req.query.page == 1){
+        skip = 0;
+    }
+    else if(Number(req.query.page) > 1){
+        skip = (Number(req.query.page) - 1) * 20
+    }
     try {
-        const posts = await Post.find()
+        const posts = await Post.find({status: 'public'}).sort({createdAt: -1}).skip(skip).limit(20).populate({
+            path:'user',
+            select:'firstName lastName avatar '
+        })
 
         return res.status(200).json({
             success: true,
@@ -67,7 +77,7 @@ route.get('/post/:id', async (req, res) => {
     }
 })
 
-
+// đăng post
 route.post('/',verifyToken, async (req,res)=>{
     try {
         
@@ -92,6 +102,49 @@ route.post('/',verifyToken, async (req,res)=>{
         })
     }
 })
-
+route.patch('/like',verifyToken, async (req,res)=>{
+    console.log(req.body)
+    try {
+        const post = await Post.findOneAndUpdate({_id:req.body.id},{
+            $push:{
+                like:req.body.user
+            }
+            },{new:true}).populate({
+            path:'user',
+            select:'firstName lastName avatar '
+        })
+        if(post) return res.status(200).json({
+            success: true,
+            post,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'somethings went wrongs'
+        })
+    }
+})
+route.patch('/remove-like',verifyToken, async (req,res)=>{
+    console.log(req.body)
+    try {
+        const post = await Post.findOneAndUpdate({_id:req.body.id},{
+            $pull:{
+                like:req.body.user
+            }
+            },{new:true}).populate({
+            path:'user',
+            select:'firstName lastName avatar '
+        })
+        if(post) return res.status(200).json({
+            success: true,
+            post,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'somethings went wrongs'
+        })
+    }
+})
 
 module.exports = route

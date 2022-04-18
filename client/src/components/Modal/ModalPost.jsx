@@ -147,7 +147,11 @@ function ModalPost({setShowModal}) {
                 </div>
             </div>
             <div className="modal-footer">
-                <button className={`submit-post ${loading ? 'loading': ''} `} onClick={onSubmit}>
+                <button
+                 className={`submit-post ${loading ? 'loading': ''} `} 
+                 onClick={onSubmit}
+                 disable={loading ? "true" : "false"}
+                >
                     {loading ? <LoadingOutlined />: ''} Đăng
                 </button>
             </div>

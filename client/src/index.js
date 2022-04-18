@@ -9,13 +9,11 @@ import PostContextProvider from './context/post';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <AuthContextProvider>
       <PostContextProvider>
         <App />
       </PostContextProvider>
     </AuthContextProvider>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

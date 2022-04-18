@@ -26,11 +26,9 @@ const PostSchema = new Schema({
         default:'public'
     },
     like:[
-        {
-            id:{
-                type:mongoose.Schema.Types.ObjectId,
-                ref: 'user',
-            }
+       {
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'user',
         }
     ],
     comment:[
@@ -49,6 +47,9 @@ const PostSchema = new Schema({
         default: Date.now
     }
     
-})
+    },  
+    { timestamps: true }
+
+)
 
 module.exports = mongoose.model('post',PostSchema)

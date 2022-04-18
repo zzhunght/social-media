@@ -60,12 +60,13 @@ input.search-box::placeholder{
 
 
 .nav-bt {
-    position: absolute;
+    position: fixed;
+    width: 95vw;
     right: 0;
     left: 0;
-    bottom: 22px;
+    bottom: 15px;
     background: #fff;
-    height: 50px;
+    height: 8vh;
     margin: 0 10px;
     border-radius: 10px;
     display:flex;
@@ -83,9 +84,12 @@ input.search-box::placeholder{
     font-size: 19px;
 }
 .nav-bt-i-icon {
-    width: 40px;
+    width: 25px;
     height: 40px;
     line-height: 40px;
+    transition: all 0.3s ease-in-out;
+    color: #515151f2;
+    transform: translateY(0);
 }
 
 .nav-bt-i-icon.active {
@@ -93,7 +97,9 @@ input.search-box::placeholder{
     border-radius: 50%;
     fill: #fff;
     position: relative;
-    transform: translateY(-15px);
+    padding: 2px 9px;
+    transform: translateY(-12px);
+    box-sizing: content-box;
 }
 .nav-bt-i-icon.active svg{
     fill: #fff;
