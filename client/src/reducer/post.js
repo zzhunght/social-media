@@ -12,6 +12,12 @@ export const PostReducer = (state, action) =>{
                     }
                 ]
             }
+        case 'SET_ONE_POST':
+            return {
+                ...state,
+                postLoading:false,
+                post:payload.post
+            }
         case 'LIKE_POST':{
             return {
                 ...state,
@@ -35,6 +41,11 @@ export const PostReducer = (state, action) =>{
                 })
             }
         }
+        case 'FETCH_POST':
+            return{
+                ...state,
+                postLoading:true
+            }
         case 'REMOVE_LIKE_POST':{
             return {
                 ...state,

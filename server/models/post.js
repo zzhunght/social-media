@@ -33,12 +33,16 @@ const PostSchema = new Schema({
     ],
     comment:[
         {
-            id:{
+            user:{
                 type:mongoose.Schema.Types.ObjectId,
                 ref: 'user',
             },
             text:{
                 type:String,
+            },
+            createdAt:{
+                type :Date,
+                default: Date.now
             }
         }
     ],

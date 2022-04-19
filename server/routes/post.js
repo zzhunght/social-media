@@ -14,10 +14,19 @@ route.get('/', async (req,res)=>{
         skip = (Number(req.query.page) - 1) * 20
     }
     try {
-        const posts = await Post.find({status: 'public'}).sort({createdAt: -1}).skip(skip).limit(20).populate({
-            path:'user',
-            select:'firstName lastName avatar '
-        })
+        const posts = await Post.find({status: 'public'}).sort({createdAt: -1}).skip(skip).limit(20).populate([
+            {
+                path:'comment',
+                populate:{
+                    path:'user',
+                    select:'firstName lastName avatar '
+                }
+            },
+            {
+                path:'user',
+                select:'firstName lastName avatar '
+            }
+        ])
 
         return res.status(200).json({
             success: true,
@@ -35,7 +44,19 @@ route.get('/mypost',verifyToken, async (req,res)=>{
     try {
         const userId = req.userId
 
-        const posts = await Post.find({user: userId})
+        const posts = await Post.find({user: userId}).populate([
+            {
+                path:'comment',
+                populate:{
+                    path:'user',
+                    select:'firstName lastName avatar '
+                }
+            },
+            {
+                path:'user',
+                select:'firstName lastName avatar '
+            }
+        ])
 
         if(!posts) return res.status(404).json({
             success: false,
@@ -54,20 +75,32 @@ route.get('/mypost',verifyToken, async (req,res)=>{
         })
     }
 })
-route.get('/post/:id', async (req, res) => {
+route.get('/:id', async (req, res) => {
+    
     try {
         const id = req.params.id
-
-        const posts = await Post.find({user: id, status:'public'})
-        if(!posts) return res.status(404).json({
+        const post = await Post.findOne({_id: id, status:'public'}).populate([
+            {
+                path:'comment',
+                populate:{
+                    path:'user',
+                    select:'firstName lastName avatar '
+                }
+            },
+            {
+                path:'user',
+                select:'firstName lastName avatar '
+            }
+        ])
+        if(!post) return res.status(404).json({
             success: false,
             message:'No post found',
-            posts: []
+            post: []
         })
 
         return res.status(200).json({
             success: true,
-            posts
+            post
         })
     } catch (error) {
         return res.status(500).json({
@@ -109,10 +142,19 @@ route.patch('/like',verifyToken, async (req,res)=>{
             $push:{
                 like:req.body.user
             }
-            },{new:true}).populate({
-            path:'user',
-            select:'firstName lastName avatar '
-        })
+            },{new:true}).populate([
+                {
+                    path:'comment',
+                    populate:{
+                        path:'user',
+                        select:'firstName lastName avatar '
+                    }
+                },
+                {
+                    path:'user',
+                    select:'firstName lastName avatar '
+                }
+            ])
         if(post) return res.status(200).json({
             success: true,
             post,
@@ -131,10 +173,19 @@ route.patch('/remove-like',verifyToken, async (req,res)=>{
             $pull:{
                 like:req.body.user
             }
-            },{new:true}).populate({
-            path:'user',
-            select:'firstName lastName avatar '
-        })
+            },{new:true}).populate([
+                {
+                    path:'comment',
+                    populate:{
+                        path:'user',
+                        select:'firstName lastName avatar '
+                    }
+                },
+                {
+                    path:'user',
+                    select:'firstName lastName avatar '
+                }
+            ])
         if(post) return res.status(200).json({
             success: true,
             post,
@@ -146,5 +197,69 @@ route.patch('/remove-like',verifyToken, async (req,res)=>{
         })
     }
 })
-
+route.patch('/like',verifyToken, async (req,res)=>{
+    console.log(req.body)
+    try {
+        const post = await Post.findOneAndUpdate({_id:req.body.id},{
+            $push:{
+                like:req.body.user
+            }
+            },{new:true}).populate([
+                {
+                    path:'comment',
+                    populate:{
+                        path:'user',
+                        select:'firstName lastName avatar '
+                    }
+                },
+                {
+                    path:'user',
+                    select:'firstName lastName avatar '
+                }
+            ])
+        if(post) return res.status(200).json({
+            success: true,
+            post,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'somethings went wrongs'
+        })
+    }
+})
+route.patch('/cmt',verifyToken, async (req,res)=>{
+    const id = req.body.id;
+    try {
+        const post = await Post.findOneAndUpdate({_id:id},{
+            $push:{
+                comment:{
+                    user: req.body.user,
+                    text: req.body.text
+                }
+            }
+            },{new:true}).populate([
+                {
+                    path:'comment',
+                    populate:{
+                        path:'user',
+                        select:'firstName lastName avatar '
+                    }
+                },
+                {
+                    path:'user',
+                    select:'firstName lastName avatar '
+                }
+            ])
+        if(post) return res.status(200).json({
+            success: true,
+            post,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'somethings went wrongs'
+        })
+    }
+})
 module.exports = route

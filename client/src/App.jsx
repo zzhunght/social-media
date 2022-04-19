@@ -10,6 +10,7 @@ import Register from './components/page/Auth/Register';
 import Home from './components/page/home/home';
 import Content from './components/page/Content/Content';
 import NavBottom from './components/Nav/NavBottom';
+import PostDetails from './components/page/PostDetails/PostDetails';
 
 function App() {
  
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="login" element={ <Login />} />
         <Route exact path="register" element={ <Register/>} />
         <Route exact path="/home" element={ <Content/>} />
+        <Route exact path="/post/:id" element={<PostDetails />}  />
     </Routes>
     <NavBottom/>
       

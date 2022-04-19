@@ -1,11 +1,13 @@
 import { AiFillHome } from "react-icons/ai";
 import { BsFillChatFill,BsFillBellFill } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect} from 'react'
 import { AuthContext } from "../../context/auth";
 
 function NavBottom() {
     const {authState:{isAuthenticated}} = useContext(AuthContext)
+
+    
     return (
     <>
     {isAuthenticated? (

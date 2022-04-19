@@ -9,9 +9,9 @@ export const PostContext = createContext()
 const PostContextProvider = ({children})=>{
     const [postState,dispath] = useReducer(PostReducer,{
         posts:[
-
         ],
         postLoading:true,
+        post:null
     })
     
     const postPost = async (formdata) =>{
@@ -68,6 +68,30 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
+    const getOnePost = async (id) =>{
+        try {
+            dispath({
+                type: 'FETCH_POST'
+            })
+            
+            const res = await axios.get(`${ApiUrl}/post/${id}`,{id})
+            console.log(res)
+            if(res.data.success){
+                dispath({
+                    type: 'SET_ONE_POST',
+                    payload:{
+                        post:res.data.post,
+                    }
+                })
+            }
+        } catch (error) {
+            if (error.response ) return error.response
+            return {
+                success:false,
+                message:error.message
+            }
+        }
+    }
     const removeLike = async (id,user,pageIndex) =>{
         try {
             const res = await axios.patch(`${ApiUrl}/post/remove-like`,{id,user})
@@ -88,7 +112,7 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
-    const postvalue = {postPost,likePost,removeLike,postState,getPost}
+    const postvalue = {postPost,likePost,removeLike,postState,getPost,getOnePost}
     return (
         <PostContext.Provider value={postvalue}>
             {children}

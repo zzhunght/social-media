@@ -1,9 +1,14 @@
 import { Col, Row } from 'antd'
 import {FaRegHeart,FaHeart, FaComment ,FaCheckCircle} from "react-icons/fa";
-import React, { Fragment, useContext, useEffect, useState } from 'react'
+import React, { Fragment, useContext} from 'react'
+import {Link } from 'react-router-dom'
 import { PostContext } from '../../context/post'
 import { AuthContext } from '../../context/auth'
 import './ListPostStyle.css'
+import { LoadingOutlined } from '@ant-design/icons';
+import TimeAgo from 'javascript-time-ago'
+import ReactTimeAgo from 'react-time-ago'
+
 
 function ListPost() {
     const {authState:{user}} = useContext(AuthContext)
@@ -60,6 +65,9 @@ function ListPost() {
                                     </div>
                                 )}
                             </div>
+                            <div className="time-ago">
+                                <ReactTimeAgo date={post.createdAt && post.createdAt} />
+                            </div>
                             <div className="post-item-react">
                                 { post.like.some(e=> e === user._id) ? (
                                     <div
@@ -77,15 +85,20 @@ function ListPost() {
                                    </div>
                                 )}
                                 
-                                <div className="cmt-icon react-icon">
+                                <Link className="cmt-icon react-icon" to={`/post/${post._id}?pageIndex=${pageIndex}`} >
                                     <FaComment className="icon" />  <span>{post.comment.length}</span>
-                                </div>
+                                </Link>
                             </div>
                         </div>
                     ))
                 }
                 </Fragment>
             ))}
+            {postLoading && (
+                <div className="loading-post">
+                    <LoadingOutlined className="loading-icon" />
+                </div>
+            )}
         </div>
     </div>
   )

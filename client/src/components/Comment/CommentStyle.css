@@ -1,0 +1,47 @@
+.comment-list {
+    margin-top: 30px;
+    padding-top: 4px;
+    border-top: 1px solid #ccc;
+}
+.cmt-wr{
+    display:flex;
+    margin-top:15px
+}
+.cmt-user-ava{
+    width: 40px;
+    height: 40px;
+    border:0.5px solid rgba(204, 204, 204, 0.685);
+    overflow: hidden;
+    border-radius:50%;
+}
+.cmt-user-ava img{
+    height: 100%;
+    object-fit: cover;
+}
+.cmt-body{
+    margin-left: 10px;
+    background: #faf6f6;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+    padding-bottom: 10px;
+}
+.cmt-user-name {
+    color: #000;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom:7px;
+}
+.cmt-item-name-sub{
+    font-size: 13px;
+    color: #707070;
+    display: inline-block;
+}
+.cmt-text{
+    font-size: 15px;
+
+}
+.cmt-wr .time-ago {
+    margin-left: 11px;
+    font-size: 12px;
+}
