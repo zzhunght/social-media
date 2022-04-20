@@ -37,7 +37,6 @@ const PostContextProvider = ({children})=>{
                         posts:res.data.posts
                     }
                 })
-                console.log(postState)
             }
         } catch (error) {
             if (error.response ) return error.response
@@ -47,7 +46,7 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
-    const likePost = async (id,user,pageIndex) =>{
+    const likePost = async (id,user) =>{
         try {
             const res = await axios.patch(`${ApiUrl}/post/like`,{id,user})
 
@@ -56,7 +55,6 @@ const PostContextProvider = ({children})=>{
                     type: 'LIKE_POST',
                     payload:{
                         post:res.data.post,
-                        pageIndex:pageIndex
                     }
                 })
             }
@@ -75,7 +73,6 @@ const PostContextProvider = ({children})=>{
             })
             
             const res = await axios.get(`${ApiUrl}/post/${id}`,{id})
-            console.log(res)
             if(res.data.success){
                 dispath({
                     type: 'SET_ONE_POST',
@@ -92,7 +89,7 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
-    const removeLike = async (id,user,pageIndex) =>{
+    const removeLike = async (id,user) =>{
         try {
             const res = await axios.patch(`${ApiUrl}/post/remove-like`,{id,user})
             if(res.data.success){
@@ -100,7 +97,7 @@ const PostContextProvider = ({children})=>{
                     type: 'REMOVE_LIKE_POST',
                     payload:{
                         post:res.data.post,
-                        pageIndex:pageIndex
+                       
                     }
                 })
             }
@@ -112,7 +109,26 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
-    const postvalue = {postPost,likePost,removeLike,postState,getPost,getOnePost}
+    const cmt = async (form) =>{
+        try {
+            const res = await axios.patch(`${ApiUrl}/post/cmt`,form)
+            if(res.data.success){
+                dispath({
+                    type: 'SET_ONE_POST',
+                    payload:{
+                        post:res.data.post,
+                    }
+                })
+            }
+        } catch (error) {
+            if (error.response ) return error.response
+            return {
+                success:false,
+                message:error.message
+            }
+        }
+    }
+    const postvalue = {postPost,likePost,removeLike,postState,getPost,getOnePost,cmt}
     return (
         <PostContext.Provider value={postvalue}>
             {children}

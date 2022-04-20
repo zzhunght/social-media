@@ -26,6 +26,8 @@
 }
 .post-detail-body {
     padding: 0 10px 20px;
+    height: 80vh;
+    overflow-y: auto;
 }
 
 .loading-post {
@@ -49,4 +51,35 @@ span.anticon.anticon-loading.anticon-spin.loading-icon::before{
     position: absolute;
     border: 2px solid #009dff71;
 
+}
+.cmt-input-wr {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+.cmt-input {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    /* background: #ffffff; */
+    height: 40px;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid #a0cef6;
+}
+.cmt-input-wr input {
+    display:inline-block;
+    border: none;
+    outline: none;
+    flex:1;
+}
+button.send-btn {
+    display:flex;   
+    font-size: 20px;
+    border: none;
+    background: none;
+    color: #00c7ff;
 }

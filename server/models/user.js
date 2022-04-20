@@ -23,6 +23,10 @@ const UserSchema = new Schema({
     createdAt:{
         type: Date,
         default: Date.now
+    },
+    background:{
+        type: String,
+        default:'https://res.cloudinary.com/dqiomqzug/image/upload/v1650444210/my_uploads/anh-bia-dep-chat-anime_tyzo85.jpg'
     }
 })
 

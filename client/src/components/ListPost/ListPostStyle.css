@@ -1,5 +1,5 @@
 .post-wr {
-    padding: 0 10px;
+    padding: 0 20px;
     margin-top: 20px;
     background: #ebebeb;
 }
@@ -94,4 +94,13 @@ span.check-icon {
 .icon {
     margin-right: 7px;
     fill: lightskyblue;
+}
+.cmt-input-wr {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+.cmt-input-wr input {
+    border:none;
+    outline: none;
 }

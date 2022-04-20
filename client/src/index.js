@@ -6,12 +6,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContextProvider from './context/auth';
 import PostContextProvider from './context/post';
+import ProfileContextProvider from './context/profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <AuthContextProvider>
       <PostContextProvider>
-        <App />
+       <ProfileContextProvider>
+          <App />
+       </ProfileContextProvider>
       </PostContextProvider>
     </AuthContextProvider>
 );

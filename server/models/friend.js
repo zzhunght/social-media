@@ -6,29 +6,25 @@ const FriendSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    acceept : [
+    accepts: [
         {
-            id:{
-                type: mongoose.Schema.Types.ObjectId,
-                ref:'user'
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'user'
         }
     ],
-    request: [
+    requests: [
         {
-            id:{
-                type: mongoose.Schema.Types.ObjectId,
-                ref:'user'
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'user'
         }
+
     ],
     pendings: [
         {
-            id:{
-                type: mongoose.Schema.Types.ObjectId,
-                ref:'user'
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'user'
         }
+       
     ]
 })
 

@@ -61,13 +61,12 @@ input.search-box::placeholder{
 
 .nav-bt {
     position: fixed;
-    width: 95vw;
     right: 0;
     left: 0;
     bottom: 15px;
     background: #fff;
     height: 8vh;
-    margin: 0 10px;
+    margin: 0 20px;
     border-radius: 10px;
     display:flex;
 }

@@ -11,7 +11,7 @@
     align-items: center;
     background: #fff;
     height: 61px;
-    margin: 0 10px;
+    margin: 0 20px;
     border-radius: 10px;
     padding: 0 10px;
     
@@ -30,7 +30,7 @@
 }
 .label-post-stt-title {
     cursor: pointer;
-    flex: 1;
+    flex: 1 1;
     height: 40px;
     line-height: 40px;
     background: #f3f3f3;
@@ -38,4 +38,8 @@
     border-radius: 10px;
     font-size: 17px;
     color: #5c5c5c;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }

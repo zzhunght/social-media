@@ -10,7 +10,9 @@ function ModalPost({setShowModal}) {
     const [loading,setLoading] = useState(false)
     const [status,setStatus] = useState('public')
     const [content,setContent] = useState('')
+    // cái này lưu image dùng để upload
     const [image,setImage] = useState(null)
+    //cái này để show
     const [showImage,setShowImage] = useState(null)
     const {authState:{user}} = useContext(AuthContext)
     const {postPost} = useContext(PostContext)

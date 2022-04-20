@@ -1,11 +1,17 @@
 .comment-list {
-    margin-top: 30px;
+    margin-top: 20px;
     padding-top: 4px;
     border-top: 1px solid #ccc;
 }
 .cmt-wr{
-    display:flex;
-    margin-top:15px
+    display: flex;
+    margin-top: 15px;
+    position: relative;
+   
+}
+.cmt-wr:not(:last-child) {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ddd;
 }
 .cmt-user-ava{
     width: 40px;
@@ -18,6 +24,12 @@
     height: 100%;
     object-fit: cover;
 }
+
+.c-option{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 .cmt-body{
     margin-left: 10px;
     background: #faf6f6;
@@ -26,6 +38,7 @@
     border-radius: 6px;
     padding-bottom: 10px;
 }
+
 .cmt-user-name {
     color: #000;
     font-size: 15px;
@@ -44,4 +57,18 @@
 .cmt-wr .time-ago {
     margin-left: 11px;
     font-size: 12px;
+}
+/* skeleton */
+.skeleton-circle {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    top: -3px;
+}
+.skeleton-polite {
+    flex: 1;
+    margin-left: 10px;
+    height: 31px;
+    position: relative;
+    top: -3px;
 }

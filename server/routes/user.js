@@ -1,5 +1,6 @@
 const express = require('express')
 const User = require('../models/user')
+const Friend = require('../models/friend')
 const route = express.Router()
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
@@ -32,6 +33,12 @@ route.get('/',verifyToken,async(req,res)=>{
 })
 
 
+
+//get profile information
+
+
+
+
 //api/auth/register
 //register method
 //public
@@ -48,6 +55,7 @@ route.post('/register', async (req,res) =>{
 
         const user = await User.findOne({email:email})
         if(user){
+           
             return res.status(400).json({
                 success:false,
                 message:'user already used'
@@ -63,7 +71,11 @@ route.post('/register', async (req,res) =>{
             password:hashpassword
         })
         await newUser.save()
-
+        //tạo ra 1 ds bạn
+        const friend = new Friend({
+            user:user._id
+        })
+        await friend.save()
         
         const accessToken = jwt.sign({
             userId:newUser._id
@@ -108,6 +120,7 @@ route.post('/login',async (req,res) => {
         const verifyPassword = await argon2.verify(user.password,password)
 
         if(verifyPassword){
+            
             const accessToken = jwt.sign({
                 userId:user._id
             },process.env.SECRET_TOKEN_SIGN)
