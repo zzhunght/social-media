@@ -2,15 +2,11 @@ const mongoose = require('mongoose')
 const {Schema} = mongoose
 
 const ConversationSchema = new Schema({
-    user: {
+    members:[
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
-    },
-    list:[
-        {id:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref:'user'
-        }}
+        ref:'user'
+        }
     ]
 })
 

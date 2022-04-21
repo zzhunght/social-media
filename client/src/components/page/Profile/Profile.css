@@ -133,3 +133,11 @@ span.count-label {
     position: relative;
     top: -1px;
 }
+.f-option {
+    display: flex;
+}
+.add-friend.reject {
+    margin-left: 10px;
+    background: #fff;
+    color: red;
+}

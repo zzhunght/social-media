@@ -75,7 +75,7 @@ const ProfileContextProvider = ({children})=>{
             }
         }
     }
-    const addFriend = async (userId,addId) => {
+    const addFriend = async (addId) => {
         try {
            
             const res = await axios.get(`${ApiUrl}/profile/add-friend/${addId}`)
@@ -95,7 +95,7 @@ const ProfileContextProvider = ({children})=>{
             }
         }
     }
-    const cancelAddFriend = async (userId,addId) => {
+    const cancelAddFriend = async (addId) => {
         try {
            
             const res = await axios.get(`${ApiUrl}/profile/cancel-add-friend/${addId}`)
@@ -115,10 +115,50 @@ const ProfileContextProvider = ({children})=>{
             }
         }
     }
+    const acceptFriend = async (addId) =>{
+        try {
+           
+            const res = await axios.get(`${ApiUrl}/profile/accept-friend/${addId}`)
+            if(res.data.success){
+                dispath({
+                    type: 'ACCEPT_ADD_FRIEND',
+                    payload:{
+                        friend: res.data.friend
+                    }
+                })
+            }
+        } catch (error) {
+            if(error.response ) return error.response
+            return {
+                success: false,
+                message: error.message
+            }
+        }
+    }
+    const rejectFriend = async (addId) =>{
+        try {
+           
+            const res = await axios.get(`${ApiUrl}/profile/reject-friend/${addId}`)
+            if(res.data.success){
+                dispath({
+                    type: 'REJECT_ADD_FRIEND',
+                    payload:{
+                        friend: res.data.friend
+                    }
+                })
+            }
+        } catch (error) {
+            if(error.response ) return error.response
+            return {
+                success: false,
+                message: error.message
+            }
+        }
+    }
     useEffect(() => {
         getMyProfile()
     },[isAuthenticated])
-    const profileValue = {profileState,getMyProfile,getStrProfile,addFriend,cancelAddFriend}
+    const profileValue = {profileState,getMyProfile,getStrProfile,addFriend,cancelAddFriend,acceptFriend,rejectFriend}
     return (
         <ProfileContext.Provider value={profileValue}>
             {children}

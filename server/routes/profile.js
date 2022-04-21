@@ -75,6 +75,7 @@ route.get('/user/:id', async (req,res)=>{
 
 
 })
+//gửi lời mời kết bạn
 route.get('/add-friend/:id',verifyToken, async (req,res)=>{
     const userId = req.userId
     const id = req.params.id
@@ -84,6 +85,9 @@ route.get('/add-friend/:id',verifyToken, async (req,res)=>{
                 pendings:id
             }
         },{new:true})
+
+        // cập nhật lại cho ng thứ 2
+
         await Friend.findOneAndUpdate({user:id},{
             $push:{
                 requests:userId
@@ -100,6 +104,7 @@ route.get('/add-friend/:id',verifyToken, async (req,res)=>{
         })
     }
 })
+// xoá gửi lời mời kết bạn
 route.get('/cancel-add-friend/:id',verifyToken, async (req,res)=>{
     const userId = req.userId
     const id = req.params.id
@@ -109,10 +114,76 @@ route.get('/cancel-add-friend/:id',verifyToken, async (req,res)=>{
                 pendings:id
             }
         },{new:true})
+
+        // cập nhật lại cho ng thứ 2
+
         await Friend.findOneAndUpdate({user:id},{
             $pull:{
                 requests:userId
             }
+        })
+        res.status(200).send({
+            success:true,
+            friend,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'Somethings went wrongs'
+        })
+    }
+})
+// chấp nhận kết bạn
+route.get('/accept-friend/:id',verifyToken, async (req,res)=>{
+    const userId = req.userId
+    const id = req.params.id
+    try {
+        const friend = await Friend.findOneAndUpdate({user:userId},{
+            $pull:{
+                requests:id
+            },
+            $push: {
+                accepts:id
+            }
+        },{new:true})
+
+        // cập nhật lại cho ng thứ 2
+        await Friend.findOneAndUpdate({user:id},{
+            $pull:{
+                pendings:userId
+            },
+            $push: {
+                accepts:userId
+            }
+        })
+        res.status(200).send({
+            success:true,
+            friend,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'Somethings went wrongs'
+        })
+    }
+})
+
+// không chấp nhận kết bạn
+route.get('/reject-friend/:id',verifyToken, async (req,res)=>{
+    const userId = req.userId
+    const id = req.params.id
+    try {
+        const friend = await Friend.findOneAndUpdate({user:userId},{
+            $pull:{
+                requests:id
+            },
+        },{new:true})
+
+        // cập nhật lại cho ng thứ 2
+        await Friend.findOneAndUpdate({user:id},{
+            $pull:{
+                pendings:userId
+            },
         })
         res.status(200).send({
             success:true,

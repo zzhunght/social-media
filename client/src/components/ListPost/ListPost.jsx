@@ -8,7 +8,7 @@ import Post from '../Post/Post';
 
 
 function ListPost() {
-    const [page,setPage] = useState(1)
+    const [page,setPage] = useState(0)
 
     const {authState:{user}} = useContext(AuthContext)
     const {postState:{posts,postLoading},getPost} = useContext(PostContext)
@@ -16,6 +16,7 @@ function ListPost() {
 
    
     useEffect(()=>{
+        setPage(x => x + 1)
         const fetchPost = async()=>{
           console.log('fetch post')
           await getPost(page)

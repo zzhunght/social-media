@@ -8,13 +8,31 @@ import Post from '../../Post/Post'
 import './Profile.css'
 function StrProfile() {
     const param = useParams()
-    const {authState:{user}} = useContext(AuthContext)
-    const {profileState:{myprofile,strprofile,strprofileLoading},getStrProfile,addFriend,cancelAddFriend} = useContext(ProfileContext)
+    const {authState:{isAuthenticated}} = useContext(AuthContext)
+    const {
+        profileState:{myprofile,strprofile,strprofileLoading},
+        getStrProfile,
+        addFriend,
+        cancelAddFriend,
+        acceptFriend,
+        rejectFriend,
+    }  = useContext(ProfileContext)
+
+    //thêm bạn
     const onAddFriend = async ()=>{
-        await addFriend(user._id,strprofile.user._id)
+        await addFriend(strprofile.user._id)
     }
+    //huỷ lời mời
     const onCancelAdd = async ()=>{
-        await cancelAddFriend(user._id,strprofile.user._id)
+        await cancelAddFriend(strprofile.user._id)
+    }
+    //chấp nhận
+    const onAcceptFriend = async ()=>{
+        await acceptFriend(strprofile.user._id)
+    }
+    // từ chối
+    const onRejectFriend = async ()=>{
+        await rejectFriend(strprofile.user._id)
     }
     useEffect(() => {
         getStrProfile(param.id)
@@ -53,16 +71,31 @@ function StrProfile() {
                             </div>
                         </div>
                         <div className="f-option">
-                            {myprofile?.friend?.accepts.some(f => f === strprofile._id) ?
+                            {   myprofile?.friend?.accepts.some(f => f === strprofile?.user._id) ?
                                 (
                                     <div className="add-friend">
                                         Bạn bè <FaUserCheck className="f-o-icon" />
                                     </div>
-                                ): myprofile?.friend?.pendings.some(f => f === strprofile.user._id) ? (
+                                )
+                                : 
+                                myprofile?.friend?.pendings.some(f => f === strprofile?.user._id) ? 
+                                (
                                     <div className="add-friend remove-friend" onClick={() =>onCancelAdd()}>
                                         Huỷ lời mời <FaUserTimes className="f-o-icon" />
                                     </div>
-                                ):(
+                                ):  
+                                myprofile?.friend?.requests.some(f => f === strprofile?.user._id) ? 
+                                (
+                                    <>
+                                    <div className="add-friend accept" onClick={() =>onAcceptFriend()}>
+                                        Chấp nhận <FaUserPlus className="f-o-icon" />
+                                    </div>
+                                    <div className="add-friend reject" onClick={() =>onRejectFriend()}>
+                                        Từ chối <FaUserTimes className="f-o-icon" />
+                                    </div>
+                                    </>
+                                ):
+                                (
                                     <div className="add-friend" onClick={() =>onAddFriend()}>
                                         Thêm bạn <FaUserPlus className="f-o-icon" />
                                     </div>
