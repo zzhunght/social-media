@@ -22,7 +22,6 @@ const ProfileContextProvider = ({children})=>{
         setAuthToken(localStorage.getItem(accessToken))
         try {
             const res = await axios.get(`${ApiUrl}/profile/my-profile`)
-            console.log(res)
             if(res.data.success){
                 dispath({
                     type: 'SET_PROFILE',
@@ -53,7 +52,6 @@ const ProfileContextProvider = ({children})=>{
                 }
             })
             const res = await axios.get(`${ApiUrl}/profile/user/${id}`)
-            console.log(res)
             if(res.data.success){
                 dispath({
                     type: 'SET_STR_PROFILE',
@@ -121,7 +119,7 @@ const ProfileContextProvider = ({children})=>{
             const res = await axios.get(`${ApiUrl}/profile/accept-friend/${addId}`)
             if(res.data.success){
                 dispath({
-                    type: 'ACCEPT_ADD_FRIEND',
+                    type: 'ACCEPT_FRIEND',
                     payload:{
                         friend: res.data.friend
                     }
@@ -141,7 +139,7 @@ const ProfileContextProvider = ({children})=>{
             const res = await axios.get(`${ApiUrl}/profile/reject-friend/${addId}`)
             if(res.data.success){
                 dispath({
-                    type: 'REJECT_ADD_FRIEND',
+                    type: 'REJECT_FRIEND',
                     payload:{
                         friend: res.data.friend
                     }

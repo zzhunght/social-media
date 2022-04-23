@@ -18,9 +18,9 @@ function NavBottom() {
                 <Link to="/home" className="nav-bt-i">
                     <AiFillHome className={`nav-bt-i-icon ${location.pathname === '/home' ? 'active': ''}`} />
                 </Link>
-                <div className="nav-bt-i">
-                    <BsFillChatFill className={`nav-bt-i-icon ${location.pathname === '/mes' ? 'active': ''}`} />
-                </div>
+                <Link to="/chat" className="nav-bt-i">
+                    <BsFillChatFill className={`nav-bt-i-icon ${location.pathname === '/chat' ? 'active': ''}`} />
+                </Link>
                 <div className="nav-bt-i">
                     <BsFillBellFill className={`nav-bt-i-icon ${location.pathname === '/notification' ? 'active': ''}`} />
                 </div>

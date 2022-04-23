@@ -23,7 +23,7 @@ route.get('/my-profile',verifyToken, async (req,res)=>{
                 select:'firstName lastName avatar '
             }
         ])
-        const friend = await Friend.findOne({user:req.userId})
+        const friend = await Friend.findOne({user:req.userId}).populate(['requests','accepts','pendings'])
 
         res.status(200).send({
             success:true,
@@ -40,7 +40,23 @@ route.get('/my-profile',verifyToken, async (req,res)=>{
 
 
 })
-//get profile
+route.get('/user/:id/name',async (req,res)=>{
+    const id = req.params.id
+    try {
+        const user = await User.findById(id).select('-password -email ')
+
+        res.status(200).send({
+            success:true,
+            user,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'Somethings went wrongs'
+        })
+    }
+})
+//get profile của user và lấy post của user đó
 route.get('/user/:id', async (req,res)=>{
     const id = req.params.id
     try {
@@ -84,7 +100,7 @@ route.get('/add-friend/:id',verifyToken, async (req,res)=>{
             $push:{
                 pendings:id
             }
-        },{new:true})
+        },{new:true}).populate(['requests','accepts','pendings'])
 
         // cập nhật lại cho ng thứ 2
 
@@ -113,7 +129,7 @@ route.get('/cancel-add-friend/:id',verifyToken, async (req,res)=>{
             $pull:{
                 pendings:id
             }
-        },{new:true})
+        },{new:true}).populate(['requests','accepts','pendings'])
 
         // cập nhật lại cho ng thứ 2
 
@@ -145,7 +161,7 @@ route.get('/accept-friend/:id',verifyToken, async (req,res)=>{
             $push: {
                 accepts:id
             }
-        },{new:true})
+        },{new:true}).populate(['requests','accepts','pendings'])
 
         // cập nhật lại cho ng thứ 2
         await Friend.findOneAndUpdate({user:id},{
@@ -177,7 +193,7 @@ route.get('/reject-friend/:id',verifyToken, async (req,res)=>{
             $pull:{
                 requests:id
             },
-        },{new:true})
+        },{new:true}).populate(['requests','accepts','pendings'])
 
         // cập nhật lại cho ng thứ 2
         await Friend.findOneAndUpdate({user:id},{

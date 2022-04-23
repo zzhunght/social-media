@@ -71,20 +71,20 @@ function StrProfile() {
                             </div>
                         </div>
                         <div className="f-option">
-                            {   myprofile?.friend?.accepts.some(f => f === strprofile?.user._id) ?
+                            {   myprofile?.friend?.accepts.some(f => f._id === strprofile?.user._id) ?
                                 (
                                     <div className="add-friend">
                                         Bạn bè <FaUserCheck className="f-o-icon" />
                                     </div>
                                 )
                                 : 
-                                myprofile?.friend?.pendings.some(f => f === strprofile?.user._id) ? 
+                                myprofile?.friend?.pendings.some(f => f._id === strprofile?.user._id) ? 
                                 (
                                     <div className="add-friend remove-friend" onClick={() =>onCancelAdd()}>
                                         Huỷ lời mời <FaUserTimes className="f-o-icon" />
                                     </div>
                                 ):  
-                                myprofile?.friend?.requests.some(f => f === strprofile?.user._id) ? 
+                                myprofile?.friend?.requests.some(f => f._id === strprofile?.user._id) ? 
                                 (
                                     <>
                                     <div className="add-friend accept" onClick={() =>onAcceptFriend()}>

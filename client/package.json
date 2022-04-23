@@ -15,9 +15,11 @@
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1",
     "react-loading-skeleton": "^3.1.0",
+    "react-query": "^3.37.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-time-ago": "^7.1.9",
+    "socket.io-client": "^4.4.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

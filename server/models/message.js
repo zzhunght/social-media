@@ -5,7 +5,7 @@ const MessageSchema = new Schema({
     conversation_id:{
         type: mongoose.Schema.Types.ObjectId,
         require: true,
-        ref: 'conversation', ConversationSchema
+        ref: 'conversation',
     },
     sender:{
         type: mongoose.Schema.Types.ObjectId,
@@ -16,6 +16,10 @@ const MessageSchema = new Schema({
     text:{
         type:String,
         require: true
+    },
+    createdAt:{
+        type : Date,
+        default: Date.now
     }
 })
 

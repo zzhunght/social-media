@@ -107,3 +107,33 @@ input.search-box::placeholder{
     display: inline-block;
     fill: #494949;
 }
+.nav-chat-title {
+    font-size: 18px;
+    color: #474747;
+    font-weight: 500;
+}
+.nav-chat-list-friend {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+.f-wer {
+    display: flex;
+}
+.quick-chat-f {
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    padding: 2px;
+    border: 2px solid #3bb5ff;
+    margin-right: 9px;
+}
+
+.quick-chat-f img{
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}

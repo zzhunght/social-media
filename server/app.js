@@ -7,7 +7,9 @@ require('dotenv').config()
 //api route 
 const UserRoute = require('./routes/user')
 const PostRoute = require('./routes/post')
+const MesRoute = require('./routes/mes')
 const ProfileRoute = require('./routes/profile')
+const ConversationRoute = require('./routes/conversation')
 
 
 //
@@ -28,7 +30,9 @@ connecDb()
 
 app.use('/api/auth',UserRoute)
 app.use('/api/post',PostRoute)
+app.use('/api/mes',MesRoute)
 app.use('/api/profile',ProfileRoute)
+app.use('/api/conversation',ConversationRoute)
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, ()=> console.log(`App listening on port ${PORT}`))

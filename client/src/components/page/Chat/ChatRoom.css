@@ -1,0 +1,124 @@
+.chat-room-wr {
+    padding: 20px 20px 10px;
+}
+h2 {
+    font-size: 27px;
+    font-weight: 500;
+}
+.conversations-title{
+    margin-top:20px;
+    font-size: 18px;
+    color: #474747;
+    font-weight: 500;
+}
+.mes {
+    position: relative;
+    height: 100vh;
+}
+.nav-mes {
+    display: flex;
+    background: #fff;
+    height: 5vh;
+    align-items: center;
+    padding-left: 10px;
+}
+.nav-mes-arrow {
+    display: flex;
+    margin-right: 20px;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    align-items: center;
+}
+.nav-mes-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+}
+.mes-body {
+    height: 89vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+.icon-sends {
+    font-size: 25px;
+    color: #228dff;
+    display: flex;
+    border: none;
+    background:none;
+}
+button.icon-sends.disabled {
+    opacity: 0.7;
+}
+.mes-input {
+    min-height: 5vh;
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+textarea.mes-input-textarea {
+    flex: 1;
+    margin-right: 10px;
+    height: 85%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+.conversation-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 7px 10px;
+    border-radius: 7px;
+}
+.conversation-items-ava {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right:10px;
+}
+.conversation-items-ava img {
+    height: 100%;
+    object-fit: cover
+}
+a.conversation-item {
+    margin-bottom: 11px;
+}
+.conversation-item-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #303030;
+}
+.mes-text {
+    display: flex;
+}
+.mes-text p {
+    margin-bottom: 0;
+    margin-top: 5px;
+    background: #fff;
+    padding: 5px;
+    margin-left: 7px;
+    border-radius: 8px;
+    font-size: 17px;
+}
+.mes-text.m-mes-text {
+    display: flex;
+    justify-content: end;
+    margin-right: 7px;
+}
+.mes-text.m-mes-text p {
+    background: #00bdff;
+    color: #fff;
+}
+.mes-text time {
+    display: flex;
+    justify-content: center;
+}

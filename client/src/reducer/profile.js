@@ -42,7 +42,7 @@ export const ProfileReducer = (state, action) =>{
                     friend:payload.friend
                 }
             }
-        case 'REJECT_ADD_FRIEND':
+        case 'REJECT_FRIEND':
             return {
                 ...state,
                 myprofile:{
