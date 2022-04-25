@@ -6,6 +6,9 @@
     border-bottom-right-radius: 15px;
     overflow-x: hidden;
 }
+.main::-webkit-scrollbar {
+    display: none;
+}
 .label-post-stt {
     display: flex;
     align-items: center;

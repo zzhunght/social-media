@@ -153,10 +153,31 @@ const ProfileContextProvider = ({children})=>{
             }
         }
     }
+
+    const updateBg = async (form) =>{
+        try {
+           
+            const res = await axios.patch(`${ApiUrl}/auth/updatebg`,form)
+            if(res.data.success){
+                dispath({
+                    type: 'UPDATE_PROFILE',
+                    payload:{
+                        user:res.data.user
+                    }
+                })
+            }
+        } catch (error) {
+            if(error.response ) return error.response
+            return {
+                success: false,
+                message: 'cập nhật không thành công'
+            }
+        }
+    }
     useEffect(() => {
         getMyProfile()
     },[isAuthenticated])
-    const profileValue = {profileState,getMyProfile,getStrProfile,addFriend,cancelAddFriend,acceptFriend,rejectFriend}
+    const profileValue = {profileState,getMyProfile,getStrProfile,addFriend,cancelAddFriend,acceptFriend,rejectFriend,updateBg}
     return (
         <ProfileContext.Provider value={profileValue}>
             {children}

@@ -14,7 +14,7 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    background: linear-gradient(180deg, #bf65f0,#d927ee, #91d4fd);
+    background: linear-gradient(180deg, #ff80e2,#7680ff, #c4e9ff)
 }
 .auth-ct-left {
     text-align: center;

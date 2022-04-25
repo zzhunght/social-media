@@ -1,4 +1,4 @@
-import React, { createContext ,useEffect, useReducer} from 'react'
+import React, { createContext ,useEffect, useReducer, useState} from 'react'
 import axios from 'axios'
 import setAuthToken, { accessToken, ApiUrl } from '../utils/contants'
 import { PostReducer } from '../reducer/post'
@@ -7,6 +7,12 @@ export const PostContext = createContext()
 
 
 const PostContextProvider = ({children})=>{
+    //page để get post
+    const [page,setPage] = useState(1)
+
+    //nếu hết bài viết thì đóng băng lại không cho gọi nữa
+    const [frezeGetPost,setFrezeGetPost] = useState(false)
+
     const [postState,dispath] = useReducer(PostReducer,{
         posts:[
         ],
@@ -26,8 +32,13 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
-    const getPost = async (page) =>{
+    const getPost = async () =>{
         try {
+            if(frezeGetPost) return null;
+            dispath({
+                type: 'FETCH_POST'
+            })
+            setPage(p=>p+1)
             const res = await axios.get(`${ApiUrl}/post?page=${page}`)
             if(res.data.success){
                 dispath({
@@ -37,6 +48,18 @@ const PostContextProvider = ({children})=>{
                         posts:res.data.posts
                     }
                 })
+            }
+            else{
+                dispath({
+                    type: 'SET_POST',
+                    payload:{
+                        postLoading:false,
+                        posts:res.data.posts
+                    }
+                })
+                setFrezeGetPost(true)
+                return res.data
+
             }
         } catch (error) {
             if (error.response ) return error.response

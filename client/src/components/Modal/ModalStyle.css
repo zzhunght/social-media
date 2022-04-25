@@ -87,6 +87,16 @@
     display:flex;
     height: 50px;
 }
+.modal-body.bg-md {
+    height: 320px;
+}
+.modal-form.md-bg-form {
+    height: 100%;
+}   
+.modal-ct.md-bg {
+    height: auto;
+    padding-bottom: 20px;
+}
 .moda-body-head-avata{
     width: 40px;
     height: 40px;
@@ -178,7 +188,9 @@ button.submit-post.loading{
 }
 .ant-message-notice-content {
     border-radius: 9px !important;
-    color: red !important;
     font-size: 16px !important;
+}
+.ant-message-error {
+    color: red;
 }
 

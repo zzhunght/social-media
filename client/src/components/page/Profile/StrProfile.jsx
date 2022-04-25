@@ -1,7 +1,8 @@
 import { LoadingOutlined } from '@ant-design/icons'
 import React, { useContext, useEffect} from 'react'
+import { BsFillChatFill } from 'react-icons/bs'
 import { FaCheckCircle, FaUserCheck, FaUserPlus, FaUserTimes } from 'react-icons/fa'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../../../context/auth'
 import { ProfileContext } from '../../../context/profile'
 import Post from '../../Post/Post'
@@ -47,7 +48,9 @@ function StrProfile() {
         {strprofile && !strprofileLoading && (
             <div className="profile">
                 <div className="pr-bg"  style={{backgroundImage:`url(${strprofile?.user?.background})`}}>   
-                   
+                    <Link className="chat-now" to={`/chat/${strprofile?.user._id}`}>
+                        <BsFillChatFill />
+                    </Link>
                 </div>
                 <div className="pr-info">
                     <div className="pr-info-head">

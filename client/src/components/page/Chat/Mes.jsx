@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
+/* eslint-disable no-mixed-operators */
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { IoSend } from 'react-icons/io5'
 import ReactTimeAgo from 'react-time-ago'
 import { MdArrowBackIosNew } from 'react-icons/md'
@@ -9,8 +10,11 @@ import { MesContext } from '../../../context/mes'
 import {ProfileContext} from '../../../context/profile'
 import { LoadingOutlined } from '@ant-design/icons'
 function Mes() {
+    const messagesEndRef = useRef(null)
     const [textarea,setTextarea] = useState('')
-
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+      }
 
     const navigate = useNavigate()
     const param = useParams()
@@ -24,7 +28,9 @@ function Mes() {
     const onTextChange = (e) =>{
         setTextarea(e.target.value)
     }
-
+    useEffect(() => {
+        scrollToBottom()
+    },[mes])
     const sendMessage = () =>{
         console.log('sendMessage')
         const data = {
@@ -35,7 +41,6 @@ function Mes() {
         SendMsgSocket(data)
         SaveMsgDB(data)
         setTextarea('')
-       
     }
     
     useEffect(() => {
@@ -58,7 +63,7 @@ function Mes() {
             </div>
         </div>
         <div className="mes-body">
-            {mes?.map((m,i)=>(
+            {!mesLoading && mes?.map((m,i)=>(
                 <div className={`mes-text ${m.sender === user?._id ?'m-mes-text' : ''}`} key={i}>
                     <div className="mes-text-ct">
                         <p>{m.text}</p>
@@ -68,12 +73,10 @@ function Mes() {
                                 <ReactTimeAgo date={m.createdAt && m?.createdAt || Date.now()} timeStyle="twitter"/>
                             </div>
                         )}
-                      
                     </div>
-                    
-                    
                 </div>
             ))}
+            <div ref={messagesEndRef} />
             {mesLoading && 
                 <div className="loading-post">
                     <LoadingOutlined className="loading-icon" />

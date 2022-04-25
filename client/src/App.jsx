@@ -1,7 +1,6 @@
 import './App.css';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext} from 'react'
 import {
-  BrowserRouter,
   Routes,
   Route,
   useLocation,
@@ -18,6 +17,7 @@ import StrProfile from './components/page/Profile/StrProfile';
 import ChatRoom from './components/page/Chat/ChatRoom';
 import Mes from './components/page/Chat/Mes';
 import { AuthContext } from './context/auth';
+import NotFound from './components/page/404/NotFound';
 
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
         { isAuthenticated && <Route exact path="profile/:id" element={<StrProfile />}  />}
         { isAuthenticated && <Route path="chat" element={ <ChatRoom />}/>}
         { isAuthenticated && <Route path="chat/:id" element={<Mes/>} />}
+        <Route path="*" element={<NotFound />}/>
     </Routes>
     {!location.pathname.startsWith('/chat/') && <NavBottom/> }
     <ReactQueryDevtools initialIsOpen />

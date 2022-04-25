@@ -1,0 +1,82 @@
+@keyframes identifier {
+    form{
+        max-height:0;
+    }
+    to{
+        max-height: 394px;
+    }
+}
+.menu-wr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 17%;
+    bottom: 0;
+    background: #fff;
+    z-index: 99;
+    transform: translateX(-101%);
+    transition: all 0.3s ease-in-out;
+}
+.menu-back-icon {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    font-size: 35px;
+    padding-left: 10px;
+    /* background: #00d3ff00; */
+}
+.menu-list {
+    padding:10px
+}
+.menu-item {
+    padding:35px 0;
+    border-bottom: 1px solid #ececec;
+}
+p.menu-item-label {
+    margin: 0;
+    font-size: 16px;
+    color: #747474;
+    display: flex;
+    align-items: center;
+}
+.menu-item-icon{
+    margin-right: 10px;
+    color: #000;
+}
+button.btn.update-btn {
+    background: #009dff;
+    border: none;
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 5px;
+}
+.update-form {
+    padding: 10px;
+    transition: all 0.5s linear;
+    overflow: hidden;
+    max-height:0;
+    animation:identifier 0.5s linear forwards;
+}
+
+label.label-update-ava {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #ccc;
+    background-size: cover;
+    margin-bottom: 15px;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-position: center;
+}
+.loading-btn {
+    opacity: 0.8
+}
+p.menu-item-label.log-out {
+    color: red;
+}
+p.menu-item-label.log-out .menu-item-icon{
+    color:red;
+}

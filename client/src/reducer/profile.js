@@ -50,6 +50,14 @@ export const ProfileReducer = (state, action) =>{
                     friend:payload.friend
                 }
             }
+        case 'UPDATE_PROFILE':
+            return {
+                ...state,
+                myprofile:{
+                    ...state.myprofile,
+                    user:payload.user
+                }
+            }
         default: return state
     }
 

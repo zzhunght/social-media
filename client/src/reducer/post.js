@@ -33,6 +33,7 @@ export const PostReducer = (state, action) =>{
                 ...state,
                 postLoading:true
             }
+
         case 'REMOVE_LIKE_POST':{
             return {
                 ...state,

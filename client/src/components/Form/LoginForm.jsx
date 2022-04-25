@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import React,{useContext, useState} from 'react'
 import {Link } from 'react-router-dom'
 import { AuthContext } from '../../context/auth'
@@ -15,7 +16,11 @@ function LoginForm() {
         })
     }
     const onSubmit = async ()=>{
-        loginUser(user)
+        const res = await loginUser(user)
+        console.log(res)
+        if(!res.success) {
+            message.error('Tài khoản hoặc mật khẩu không chính xác')
+        }
     }
     return (
     <div className="form">

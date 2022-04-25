@@ -43,12 +43,13 @@ const AuthContextProvider =({children}) =>{
             
         }
     }
-    const LogOut = ()=>{
+    const LogOut = async ()=>{
         localStorage.removeItem(accessToken)
         dispath({
             type:'LOGOUT',
             payload:{}
         })
+        await LoadUser()
     }
     const loginUser = async (form) =>{
         try {
@@ -56,9 +57,10 @@ const AuthContextProvider =({children}) =>{
             if(res.data.success){
                 localStorage.setItem(accessToken,res.data.accessToken)
                 LoadUser()
+                return res.data
             }
         } catch (error) {
-            if (error.response) return error.response
+            if (error.response) return error.response.data
             return {
                 success:false,
                 message:error.message
@@ -80,7 +82,7 @@ const AuthContextProvider =({children}) =>{
                 return res.data
             }
         } catch (error) {
-            if (error.response) return error.response
+            if (error.response) return error.response.data
             return {
                 success:false,
                 message:error.message
@@ -88,11 +90,53 @@ const AuthContextProvider =({children}) =>{
             
         }
     }
-
+    const updateAvatar = async (form) =>{
+        try {
+            const res = await axios.patch(`${ApiUrl}/auth/updateavatar`,form)
+            if(res.data.success){
+                return res.data
+            }
+        } catch (error) {
+            if(error.response) return error.response.data
+            return {
+                success:false,
+                message:'Vui lòng thử lại sau'
+            }
+        }
+    }
+    const updateName = async (form) =>{
+        try {
+            const res = await axios.patch(`${ApiUrl}/auth/updatename`,form)
+            if(res.data.success){
+                return res.data
+            }
+        } catch (error) {
+            if(error.response) return error.response.data
+            return {
+                success:false,
+                message:'Vui lòng thử lại sau'
+            }
+        }
+    }
+    const updatePassword = async (form) =>{
+        try {
+            const res = await axios.patch(`${ApiUrl}/auth/updatepassword`, form)
+            if(res.data.success){
+                localStorage.setItem(accessToken,res.data.accessToken)
+                return res.data
+            }
+        } catch (error) {
+            if(error.response) return error.response.data
+            return {
+                success:false,
+                message:'Vui lòng thử lại sau'
+            }
+        }
+    }
     useEffect(() => {
         LoadUser()
     },[])
-    const value = {authState,loginUser,registerUser,LogOut}
+    const value = {authState,loginUser,registerUser,LogOut,updatePassword,updateName,updateAvatar}
     return(
         <AuthContext.Provider value={value}>
             {children}

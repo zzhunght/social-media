@@ -104,3 +104,13 @@ span.check-icon {
     border:none;
     outline: none;
 }
+.loading-post-home{
+    margin-bottom:200px;
+    margin-top: 30px;
+}
+.message {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    font-size: 15px;
+}

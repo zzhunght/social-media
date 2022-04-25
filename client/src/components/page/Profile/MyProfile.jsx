@@ -1,20 +1,30 @@
 import { LoadingOutlined } from '@ant-design/icons'
 import React, { useContext, useEffect, useState } from 'react'
-import { BsFilePlus } from 'react-icons/bs'
+import {VscListFlat} from 'react-icons/vsc'
+import { BsFilePlus} from 'react-icons/bs'
 import { FaCheckCircle } from 'react-icons/fa'
 import { ProfileContext } from '../../../context/profile'
+import BgModal from '../../Modal/BgModal'
 import Post from '../../Post/Post'
 import './Profile.css'
+import Menu from '../../Menu/Menu'
 function MyProfile() {
     const {profileState:{myprofile,myprofileLoading},getMyProfile} = useContext(ProfileContext)
 
-    const [bg,setBg] = useState(null)
-    const onImageChange = (e)=>{
-        setBg(e.target.file)
+    const [loading,setLoading] = useState(false)
+    const [showModal,setShowModal] = useState(false)
+    
+    const showMenu = () =>{
+        const menu = document.querySelector('.menu-wr')
+        menu.style.transform = 'translateX(0)'
     }
-
+    const hideMenu = () =>{
+        const menu = document.querySelector('.menu-wr')
+        menu.style.transform = 'translateX(-101%)'
+    }
     useEffect(() => {
         getMyProfile()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
   return (
     <div className="profile-wr">
@@ -27,8 +37,16 @@ function MyProfile() {
             <div className="profile">
                 <div className="pr-bg"  style={{backgroundImage:`url(${myprofile?.user?.background})`}}>
                     <div className="upload-bg">
-                        <label htmlFor="bg"> Cập nhật ảnh bìa của bạn <BsFilePlus /></label>
-                        <input type="file" id="bg"/>
+                        <div onClick={() =>setShowModal(true)} > {loading ? <LoadingOutlined />:
+                        <>
+                            Cập nhật ảnh bìa của bạn <BsFilePlus />
+                        </>
+                        }
+                        </div>
+                        <div className="menu-open" onClick={() =>showMenu()} >
+                            <VscListFlat />
+                        </div>
+                        
                     </div>
                 </div>
                 <div className="pr-info">
@@ -59,6 +77,8 @@ function MyProfile() {
                 </div>
             </div>
         )}
+        {showModal && <BgModal setShowModal={setShowModal} setLoading={setLoading} loading={loading}/>}
+        <Menu hideMenu={hideMenu}/>
     </div>
   )
 }

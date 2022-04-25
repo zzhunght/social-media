@@ -27,7 +27,11 @@ route.get('/', async (req,res)=>{
                 select:'firstName lastName avatar '
             }
         ])
-
+        if (posts.length === 0) return res.status(200).json({
+            success:false,
+            posts,
+            message:'Đã hết nội dung'
+        })
         return res.status(200).json({
             success: true,
             posts

@@ -59,7 +59,7 @@ function RegisterForm() {
     if(responseBackEnd.success) setLoading(false)
     else {
       setLoading(false)
-      return message.error('Đăng ký không thành công'+" "+ responseBackEnd.data.message)
+      return message.error('Đăng ký không thành công'+" "+ responseBackEnd.message)
     }
    
   }
@@ -75,7 +75,8 @@ function RegisterForm() {
             value={user.firstName}
             onChange={(e) => onFormChange(e)}
           />
-      </div>  <div className="form-group">
+      </div>  
+      <div className="form-group">
           <input
             required={true}
             type="text" 

@@ -3,11 +3,8 @@ const io = require("socket.io")(process.env.PORT || 9000, {
       origin: "http://localhost:3000",
     },
   });
-  const lists = []
   io.on("connection", (socket) => {
 
-    lists.push(socket.id)
-    console.log("list",lists)
     //when ceonnect
     socket.on("client-send-mes", (data) => {
       console.log("client-send-mes", data)

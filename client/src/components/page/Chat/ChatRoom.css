@@ -41,6 +41,9 @@ h2 {
     box-sizing: border-box;
     overflow-y: auto;
 }
+.mes-body::-webkit-scrollbar {
+    display: none;
+}
 .icon-sends {
     font-size: 25px;
     color: #228dff;
