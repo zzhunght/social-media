@@ -54,21 +54,29 @@ input.search-box::placeholder{
     font-size: 21px;
     width: 30px;
     text-align: center;
-    background: #fff;
+    background: #000;
     border-radius: 5px;
 }
 
 
 .nav-bt {
-    position: fixed;
+    position: absolute;
     right: 0;
     left: 0;
-    bottom: 15px;
-    background: #fff;
+    bottom: 0;
     height: 8vh;
-    margin: 0 20px;
     border-radius: 10px;
-    display:flex;
+    display: flex;
+}
+.nav-bt::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    transform: scaleY(0.4);
+    background: #fff;
 }
 .nav-bt-l{
     flex: 1;
@@ -92,12 +100,12 @@ input.search-box::placeholder{
 }
 
 .nav-bt-i-icon.active {
-    background: #00b3ff;
     border-radius: 50%;
-    fill: #fff;
+    background: #fff;
+    fill: #000;
     position: relative;
     padding: 2px 9px;
-    transform: translateY(-12px);
+    transform: translateY(-7px);
     box-sizing: content-box;
 }
 .nav-bt-i-icon.active svg{

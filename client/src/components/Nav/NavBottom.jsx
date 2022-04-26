@@ -1,6 +1,6 @@
 import { AiFillHome } from "react-icons/ai";
 import { BsFillChatFill,BsFillBellFill } from "react-icons/bs";
-import { FaUserAlt } from "react-icons/fa";
+import { FaSearch, FaUserAlt } from "react-icons/fa";
 import React, { useContext, useEffect} from 'react'
 import { AuthContext } from "../../context/auth";
 import { Link, useLocation } from "react-router-dom";
@@ -19,6 +19,9 @@ function NavBottom() {
                 </Link>
                 <Link to="/chat" className="nav-bt-i">
                     <BsFillChatFill className={`nav-bt-i-icon ${location.pathname === '/chat' ? 'active': ''}`} />
+                </Link>
+                <Link to="/explore" className="nav-bt-i">
+                    <FaSearch className={`nav-bt-i-icon ${location.pathname === '/explore' ? 'active': ''}`} />
                 </Link>
                 <div className="nav-bt-i">
                     <BsFillBellFill className={`nav-bt-i-icon ${location.pathname === '/notification' ? 'active': ''}`} />

@@ -1,7 +1,10 @@
 .profile {
-    background: #ebebeb;
+    background: #000;
     height: 89vh;
     overflow-y: auto;
+}
+.profile::-webkit-scrollbar {
+    display:none
 }
 .pr-bg {
     width: 100%;
@@ -48,7 +51,7 @@
     border-top-left-radius: 27px;
     border-top-right-radius: 27px;
     overflow: hidden;
-    background: #ebebeb;
+    background: #000;
     position: relative;
     z-index: 2;
     top: -29px;
@@ -100,13 +103,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #fff;
+    /* background: #fff; */
     padding: 1px 10px;
     border-radius: 10px;
     font-weight: 600;
     font-size: 13px;
-    flex: 1;
-    margin-right:15px;
+    flex: 1 1;
+    margin-right: 15px;
+    border: 1px solid #ccc;
 }
 
 span.count-label {
@@ -123,19 +127,18 @@ span.count-label {
 }
 
 .pr-name .name {
-    color: #282828;
+    color: #fff;
     font-weight: 700;
     font-size: 16px;
 }
 .pr-name .name-sub {
     font-size: 13px;
-    color: #333333;
+    color: #fff;
 }
 .pr-post {
     position: relative;
     top: -26px;
-    padding: 10px;
-    background: #ebebeb;
+    background: #000;
 }
 .add-friend {
     background: #00a8ff;

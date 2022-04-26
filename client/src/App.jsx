@@ -18,6 +18,7 @@ import ChatRoom from './components/page/Chat/ChatRoom';
 import Mes from './components/page/Chat/Mes';
 import { AuthContext } from './context/auth';
 import NotFound from './components/page/404/NotFound';
+import Search from './components/page/Search/Search';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         { isAuthenticated && <Route exact path="profile/:id" element={<StrProfile />}  />}
         { isAuthenticated && <Route path="chat" element={ <ChatRoom />}/>}
         { isAuthenticated && <Route path="chat/:id" element={<Mes/>} />}
+        { isAuthenticated && <Route path="explore" element={<Search/>} />}
         <Route path="*" element={<NotFound />}/>
     </Routes>
     {!location.pathname.startsWith('/chat/') && <NavBottom/> }

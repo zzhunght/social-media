@@ -1,7 +1,17 @@
 .comment-list {
     margin-top: 20px;
     padding-top: 4px;
-    border-top: 1px solid #ccc;
+    position: relative;
+}
+.comment-list::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    transform: scaleY(0.4);
+    background: #fff;
 }
 .cmt-wr{
     display: flex;
@@ -9,9 +19,19 @@
     position: relative;
    
 }
-.cmt-wr:not(:last-child) {
+.cmt-wr {
     padding-bottom: 4px;
-    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+.cmt-wr:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom:  0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    transform: scaleY(0.4);
+    background: #fff;
 }
 .cmt-user-ava{
     width: 40px;
@@ -32,7 +52,6 @@
 }
 .cmt-body{
     margin-left: 10px;
-    background: #faf6f6;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 6px;
@@ -40,14 +59,14 @@
 }
 
 .cmt-user-name {
-    color: #000;
+    color: #fff;
     font-size: 15px;
     font-weight: 600;
     margin-bottom:7px;
 }
 .cmt-item-name-sub{
     font-size: 13px;
-    color: #707070;
+    color: #fff;
     display: inline-block;
 }
 .cmt-text{
@@ -55,7 +74,7 @@
 
 }
 .cmt-wr .time-ago {
-    margin-left: 11px;
+    margin-left: 19px;
     font-size: 12px;
 }
 /* skeleton */

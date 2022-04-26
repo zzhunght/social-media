@@ -1,6 +1,7 @@
 const express = require('express')
 const route = express.Router()
 const Message = require('../models/message')
+const Conversations = require('../models/conversation')
 const verifyToken = require('../middleware/auth')
 route.get('/:id',verifyToken,async(req, res)=>{
     let skip = 0;
@@ -23,6 +24,7 @@ route.get('/:id',verifyToken,async(req, res)=>{
         })
     }
 })
+// lưu đoạn chat giữa 2 người vào db
 route.post('/',verifyToken,async(req, res)=>{
     console.log(req.body)
     try {
@@ -33,6 +35,9 @@ route.post('/',verifyToken,async(req, res)=>{
             text
         })
         await mes.save()
+        await Conversations.findOneAndUpdate({_id:conversation_id},{
+            updateAt:Date.now
+        })
     } catch (error) {
         return res.status(500).json({
             success: false,

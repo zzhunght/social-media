@@ -163,7 +163,7 @@ input[type="file"]{
     border-radius: 7px;
 }
 .modal-footer{
-    margin-top:10px;
+    margin-top:65px;
 }
 button.submit-post {
     width: 100%;
@@ -194,3 +194,25 @@ button.submit-post.loading{
     color: red;
 }
 
+.img-modal {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000c;
+    position: relative;
+}
+.close-img-modal {
+    position: absolute;
+    color: #fff;
+    top: 7px;
+    right: 10px;
+    font-size: 20px;
+    fill: #fff;
+    background: #fff;
+    display: flex;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}

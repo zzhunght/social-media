@@ -17,10 +17,12 @@ code {
 #root{
   width: 100%;
   max-width: 576px;
-  background: #ebebeb;
+  background: #000;
   height: 100vh;
   position: relative;
   margin: 0 auto;
+  color: #fff;
+  overflow: hidden;
 }
 a{
   color: #fff;

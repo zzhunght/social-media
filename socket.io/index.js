@@ -9,7 +9,7 @@ const io = require("socket.io")(process.env.PORT || 9000, {
     socket.on("client-send-mes", (data) => {
       console.log("client-send-mes", data)
       socket.join(data.conversation_id)
-      io.emit("mes-from-server",data);
+      io.to(data.conversation_id).emit("mes-from-server",data);
     });
     socket.on("join-room", (room) => {
       console.log("join-room", room)

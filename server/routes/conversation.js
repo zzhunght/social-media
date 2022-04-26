@@ -3,12 +3,14 @@ const verifyToken = require('../middleware/auth')
 const route = express.Router()
 const Conversations = require('../models/conversation')
 
+
+//lấy hết cuộc trò chuyện
 route.get('/',verifyToken, async (req, res) => {
     const id = req.userId
     try {
         const conversations = await Conversations.find({
             members :{$in:[id]}
-        }).populate('members')
+        }).populate('members').sort({updatedAt:-1})
         return res.status(200).json({
             success: true,
             conversations: conversations

@@ -12,7 +12,7 @@
     left: 0;
     right: 17%;
     bottom: 0;
-    background: #fff;
+    background: #000;
     z-index: 99;
     transform: translateX(-101%);
     transition: all 0.3s ease-in-out;
@@ -29,19 +29,18 @@
     padding:10px
 }
 .menu-item {
-    padding:35px 0;
-    border-bottom: 1px solid #ececec;
+    padding:13px 0;
 }
 p.menu-item-label {
     margin: 0;
     font-size: 16px;
-    color: #747474;
+    color: #fff;
     display: flex;
     align-items: center;
 }
 .menu-item-icon{
     margin-right: 10px;
-    color: #000;
+    color: #fff;
 }
 button.btn.update-btn {
     background: #009dff;

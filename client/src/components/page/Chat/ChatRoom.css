@@ -4,6 +4,7 @@
 h2 {
     font-size: 27px;
     font-weight: 500;
+    color: #fff;
 }
 .conversations-title{
     margin-top:20px;
@@ -17,7 +18,6 @@ h2 {
 }
 .nav-mes {
     display: flex;
-    background: #fff;
     height: 5vh;
     align-items: center;
     padding-left: 10px;
@@ -34,12 +34,13 @@ h2 {
 .nav-mes-name {
     font-size: 18px;
     font-weight: 500;
-    color: #000;
+    color: #fff;
 }
 .mes-body {
-    height: 89vh;
+    height: 87vh;
     box-sizing: border-box;
     overflow-y: auto;
+    padding-bottom: 37px;
 }
 .mes-body::-webkit-scrollbar {
     display: none;
@@ -56,7 +57,6 @@ button.icon-sends.disabled {
 }
 .mes-input {
     min-height: 5vh;
-    background: #fff;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -67,17 +67,20 @@ button.icon-sends.disabled {
 }
 
 textarea.mes-input-textarea {
-    flex: 1;
+    flex: 1 1;
     margin-right: 10px;
-    height: 85%;
+    /* height: 82px; */
     border: none;
     outline: none;
     font-size: 15px;
+    background: #000;
+    color: #fff;
+    border: 1px solid #00bdff;
+    border-radius: 10px;
 }
 .conversation-item {
     display: flex;
     align-items: center;
-    background: #fff;
     padding: 7px 10px;
     border-radius: 7px;
 }
@@ -98,7 +101,7 @@ a.conversation-item {
 .conversation-item-name {
     font-size: 15px;
     font-weight: 600;
-    color: #303030;
+    color: #fff;
 }
 .mes-text {
     display: flex;
@@ -106,8 +109,8 @@ a.conversation-item {
 .mes-text p {
     margin-bottom: 0;
     margin-top: 5px;
-    background: #fff;
-    padding: 5px;
+    background: #2f3336;
+    padding: 6px 10px;
     margin-left: 7px;
     border-radius: 8px;
     font-size: 17px;
