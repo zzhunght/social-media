@@ -79,3 +79,12 @@ p.menu-item-label.log-out {
 p.menu-item-label.log-out .menu-item-icon{
     color:red;
 }
+textarea.bio-change {
+    height: 100px;
+    border-radius: 9px;
+    font-size: 15px;
+    color: #000;
+}
+textarea.bio-change::placeholder{
+    font-size: 15px;
+}

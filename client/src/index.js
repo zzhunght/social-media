@@ -14,6 +14,7 @@ import ProfileContextProvider from './context/profile';
 import { BrowserRouter } from 'react-router-dom';
 import MesContextProvider from './context/mes';
 import SocketContextProvider from './context/socketIo';
+import SearchContextProvider from './context/search';
 
 const queryClient = new QueryClient()
 
@@ -25,9 +26,11 @@ root.render(
        <ProfileContextProvider>
          <MesContextProvider>
           <SocketContextProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
+            <SearchContextProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </SearchContextProvider>
           </SocketContextProvider>
          </MesContextProvider>
        </ProfileContextProvider>

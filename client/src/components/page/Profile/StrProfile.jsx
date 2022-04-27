@@ -105,7 +105,9 @@ function StrProfile() {
                                 )
                             }
                             
-                           
+                            <div className="pr-bio">
+                                <p>{strprofile?.user?.bio}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

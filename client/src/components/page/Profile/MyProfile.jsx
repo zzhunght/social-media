@@ -69,6 +69,9 @@ function MyProfile() {
                             @{myprofile?.user?.firstName}{myprofile?.user?.lastName}
                         </div>
                     </div>
+                    <div className="pr-bio">
+                        <p>{myprofile?.user?.bio}</p>
+                    </div>
                 </div>
                 <div className="pr-post">
                     {myprofile?.posts?.map((post,i) => (

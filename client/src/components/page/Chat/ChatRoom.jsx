@@ -33,11 +33,14 @@ function ChatRoom() {
                 <>
                   {data.conversations.map((c,i)=>(
                     <div key={i}>
+
                       {c?.members.map((c,index) => {
+                        // kiểm tra xem member nào không phải chính mình thì hiện
                         if(c._id !== user._id) return(
                           (
                             <motion.div layout
                               transition={{ delay: 1 }}
+                              key={index}
                             >
                               <Link className="conversation-item" key={index} to={`/chat/${c._id}`}>
                                 <div className="conversation-items-ava">

@@ -164,3 +164,8 @@ span.count-label {
     background: #fff;
     color: red;
 }
+
+.pr-bio p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}

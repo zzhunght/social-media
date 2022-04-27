@@ -2,7 +2,7 @@ import { message } from 'antd'
 import React, { useContext, useState } from 'react'
 import {LoadingOutlined} from '@ant-design/icons'
 import {BsCardImage} from 'react-icons/bs'
-import {MdOutlineDriveFileRenameOutline} from 'react-icons/md'
+import {MdEdit, MdOutlineDriveFileRenameOutline} from 'react-icons/md'
 import {AiOutlineLogout,AiOutlineSetting} from 'react-icons/ai'
 import {BiArrowBack} from 'react-icons/bi'
 import { AuthContext } from '../../context/auth'
@@ -10,12 +10,13 @@ import './Menu.css'
 import { ProfileContext } from '../../context/profile'
 
 function Menu({hideMenu}) {
-    const {authState:{user},updateAvatar,updateName,updatePassword,LogOut} = useContext(AuthContext)
+    const {authState:{user},updateAvatar,updateName,updatePassword,updateBio,LogOut} = useContext(AuthContext)
     const {getMyProfile} = useContext(ProfileContext)
 
     const [showItem1,setShowItem1] = useState(false)
     const [showItem2,setShowItem2] = useState(false)
     const [showItem3,setShowItem3] = useState(false)
+    const [showItem4,setShowItem4] = useState(false)
 
     const [loading,setLoading] = useState(false)
     const [ava,setAva] = useState(null)
@@ -25,6 +26,7 @@ function Menu({hideMenu}) {
     const [password,setPassword] = useState('')
     const [newPassword,setNewPassword] = useState('')
     const [reNewPassword,setReNewPassword] = useState('')
+    const [bio,setBio] = useState('')
 
 
     const onFirstNameChange = e =>{
@@ -74,6 +76,35 @@ function Menu({hideMenu}) {
             })
             setFirstName('')
             setLastName('')
+            setLoading(false)
+
+        }
+    }
+    const submitBio = async ()=>{
+        if(!bio ) return message.error('Chưa điền đầy đủ thông tin')
+        setLoading(true)
+        const form = {
+            bio: bio,
+        }
+        const res = await updateBio(form)
+        if(res.success){
+            message.success({
+                content: 'Cập nhật thành công',
+                className: 'success-class',
+                style:{
+                    color:'rgb(101 165 105) !important'
+                },
+            })
+            setBio('')
+            setLoading(false)
+            getMyProfile()
+        }
+        else{
+            console.log(res)
+            message.error({
+                content: res.message,
+            })
+            setBio('')
             setLoading(false)
 
         }
@@ -206,6 +237,30 @@ function Menu({hideMenu}) {
                 )}
             </div>
             <div className="menu-item">
+                <p className="menu-item-label" onClick={()=>setShowItem4(!showItem4)}>
+                    <MdEdit className="menu-item-icon"/> Chỉnh sửa tiểu sử
+                </p>
+                {showItem4 && (
+                    <div className="update-form">
+                        <div className="form-group">
+                            <textarea
+                                className="bio-change"
+                                required={true}
+                                name="text-area"
+                                placeholder="Chỉnh sửa lại tiểu sử của bạn"
+                                value={bio}
+                                onChange={e => setBio(e.target.value)}
+                            ></textarea>
+                        </div> 
+                        <button 
+                         className={`btn update-btn ${loading ? 'loading-btn' : ''}`}
+                         onClick={submitBio}
+                        >
+                            {loading ? <LoadingOutlined />:''} Cập nhật</button>
+                    </div>
+                )}
+            </div>
+            <div className="menu-item">
                 <p className="menu-item-label" onClick={() =>setShowItem2(!showItem2)}><BsCardImage className="menu-item-icon"/> Cập nhật ảnh đại diện</p>
                 {showItem2 && (
                     <div className="update-form">
@@ -271,6 +326,7 @@ function Menu({hideMenu}) {
                     <AiOutlineLogout className="menu-item-icon"/> Đăng Xuất
                 </p>
             </div>
+            
         </div>
     </div>
   )

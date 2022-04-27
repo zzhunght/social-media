@@ -8,13 +8,19 @@ const UserSchema = new Schema({
         default: 'https://res.cloudinary.com/dqiomqzug/image/upload/v1650339177/my_uploads/avatar_q05ouv.jpg'
     },
     firstName:{
-        type:String
+        type:String,
+        require: true
     },
     lastName:{
-        type:String
+        type:String,
+        require: true
     },
     password:{
-        type:String
+        type:String,
+        require: true
+    },
+    bio:{
+        type:String,
     },
     email:{
         type:String,

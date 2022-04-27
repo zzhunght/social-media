@@ -133,10 +133,24 @@ const AuthContextProvider =({children}) =>{
             }
         }
     }
+    const updateBio = async (form) =>{
+        try {
+            const res = await axios.patch(`${ApiUrl}/auth/updatebio`,form)
+            if(res.data.success){
+                return res.data
+            }
+        } catch (error) {
+            if(error.response ) return error.response
+            return {
+                success: false,
+                message: 'cập nhật không thành công'
+            }
+        }
+    }
     useEffect(() => {
         LoadUser()
     },[])
-    const value = {authState,loginUser,registerUser,LogOut,updatePassword,updateName,updateAvatar}
+    const value = {authState,loginUser,registerUser,LogOut,updatePassword,updateName,updateAvatar,updateBio}
     return(
         <AuthContext.Provider value={value}>
             {children}

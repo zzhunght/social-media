@@ -174,10 +174,21 @@ const ProfileContextProvider = ({children})=>{
             }
         }
     }
+   
     useEffect(() => {
         getMyProfile()
     },[isAuthenticated])
-    const profileValue = {profileState,getMyProfile,getStrProfile,addFriend,cancelAddFriend,acceptFriend,rejectFriend,updateBg}
+    const profileValue = {
+        profileState,
+        getMyProfile,
+        getStrProfile,
+        addFriend,
+        cancelAddFriend,
+        acceptFriend,
+        rejectFriend,
+        updateBg,
+    
+    }
     return (
         <ProfileContext.Provider value={profileValue}>
             {children}

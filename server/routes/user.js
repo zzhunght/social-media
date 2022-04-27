@@ -219,6 +219,7 @@ route.patch('/updateavatar',verifyToken, async (req,res)=>{
         },{new:true})
         return res.status(200).json({
             success:true,
+            user
         })
     } catch (error) {
         return res.status(500).json({
@@ -235,6 +236,23 @@ route.patch('/updatename',verifyToken, async (req,res)=>{
         },{new:true})
         return res.status(200).json({
             success:true,
+            user
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'Somethings went wrongs'
+        })
+    }
+})
+route.patch('/updatebio',verifyToken, async (req,res)=>{
+    try {
+        const user = await User.findOneAndUpdate({_id:req.userId},{
+            bio:req.body.bio
+        },{new:true})
+        return res.status(200).json({
+            success:true,
+            user
         })
     } catch (error) {
         return res.status(500).json({

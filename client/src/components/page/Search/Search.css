@@ -15,3 +15,41 @@ input.search-input {
     font-size: 20px;
     /* margin-right: 10px; */
 }
+.search-result {
+    padding-top: 20px;
+    position: relative;
+}
+.search-message {
+    text-align: center;
+    font-size: 17px;
+    color: #ccc;
+}
+.list-users {
+    padding: 10px;
+}
+.search-item-user {
+    display: flex;
+    margin-bottom: 20px;
+}
+.search-item-user-avatar{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 7px;
+    /* border: 0.5px solid #ffffff; */
+    /* box-sizing: content-box; */
+}
+.search-item-user-avatar img{
+    height: 100%;
+    object-fit: cover
+}
+.search-item-user-name{
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+}
+.search-item-user-sub-name{
+    font-size:13px;
+    color: #ccc;
+}
