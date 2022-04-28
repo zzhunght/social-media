@@ -1,0 +1,36 @@
+.notification-wr{
+
+}
+.notification-wr  h2 {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    color: #e6e6e6;
+    font-weight: 400;
+}
+.fr-requests {
+    padding: 10px;
+    position: relative;
+}
+.fr-requests .fr-requests-label {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0;
+}
+.no-requests-friend {
+    color: #c1bebe;
+}
+.fr-requests-i {
+    display: flex;
+}
+.fr-requests-i {
+    display: flex;
+    justify-content: space-between;
+}
+.fr-requests-options .add-friend.accept {
+    font-size:12px
+}
+.fr-requests-options .add-friend.reject{
+    font-size:12px
+    
+}

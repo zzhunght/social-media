@@ -19,7 +19,7 @@ function LoginForm() {
         const res = await loginUser(user)
         console.log(res)
         if(!res.success) {
-            message.error('Tài khoản hoặc mật khẩu không chính xác')
+            message.error(res||'Tài khoản hoặc mật khẩu không chính xác')
         }
     }
     return (

@@ -68,7 +68,7 @@ function Post({post}) {
             )}
         </div>
         <div className="time-ago">
-            <ReactTimeAgo date={post.createdAt && post.createdAt} />
+            <ReactTimeAgo date={post.createdAt && post.createdAt} timeStyle="twitter" />
         </div>
         <div className="post-item-react">
             { post.like.some(e=> e === user._id) ? (

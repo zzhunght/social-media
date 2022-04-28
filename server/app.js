@@ -28,7 +28,9 @@ const connecDb = async ()=>{
 
 connecDb() 
 
-
+app.get('/', (req, res)=>{
+    res.send('Hello world')
+})
 app.use('/api/auth',UserRoute)
 app.use('/api/post',PostRoute)
 app.use('/api/mes',MesRoute)

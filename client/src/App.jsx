@@ -19,6 +19,7 @@ import Mes from './components/page/Chat/Mes';
 import { AuthContext } from './context/auth';
 import NotFound from './components/page/404/NotFound';
 import Search from './components/page/Search/Search';
+import Notification from './components/page/Notifications/Notification';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         { isAuthenticated && <Route path="chat" element={ <ChatRoom />}/>}
         { isAuthenticated && <Route path="chat/:id" element={<Mes/>} />}
         { isAuthenticated && <Route path="explore" element={<Search/>} />}
+        { isAuthenticated && <Route path="notification" element={<Notification/>} />}
         <Route path="*" element={<NotFound />}/>
     </Routes>
     {!location.pathname.startsWith('/chat/') && <NavBottom/> }

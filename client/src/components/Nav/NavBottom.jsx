@@ -23,9 +23,9 @@ function NavBottom() {
                 <Link to="/explore" className="nav-bt-i">
                     <FaSearch className={`nav-bt-i-icon ${location.pathname === '/explore' ? 'active': ''}`} />
                 </Link>
-                <div className="nav-bt-i">
+                <Link to="/notification" className="nav-bt-i">
                     <BsFillBellFill className={`nav-bt-i-icon ${location.pathname === '/notification' ? 'active': ''}`} />
-                </div>
+                </Link>
                 <Link to="/my-profile" className="nav-bt-i">
                     <FaUserAlt className={`nav-bt-i-icon ${location.pathname === '/my-profile' ? 'active': ''}`} />
                 </Link>

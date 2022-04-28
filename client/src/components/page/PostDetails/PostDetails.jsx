@@ -4,20 +4,19 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { FaCheckCircle, FaComment, FaHeart, FaRegHeart } from 'react-icons/fa'
 import {MdOutlineKeyboardBackspace} from 'react-icons/md'
 import {IoMdSend} from 'react-icons/io'
-import { useParams,useSearchParams,useNavigate } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../context/auth'
 import { PostContext } from '../../../context/post'
 import './PostDetailStyle.css'
 import Comment from '../../Comment/Comment'
-import TimeAgo from 'javascript-time-ago'
 import ReactTimeAgo from 'react-time-ago'
+import { BsChat } from 'react-icons/bs'
 
 
 
 function PostDetails() {
     const params = useParams()
     const navigate = useNavigate()
-    const [searchParams] = useSearchParams()
     const {authState:{user}} = useContext(AuthContext) 
     const {postState:{postLoading,post},getOnePost,likePost,removeLike,cmt} = useContext(PostContext)
 
@@ -98,15 +97,15 @@ function PostDetails() {
                         )}
                     </div>
                     <div className="time-ago">
-                        <ReactTimeAgo date={post.createdAt && post.createdAt} />
+                        <ReactTimeAgo date={post.createdAt && post.createdAt} timeStyle="twitter"/>
                     </div>
                     <div className="post-item-react">
                         { post.like.some(e=> e === user._id) ? (
                             <div
-                                className="like-icon react-icon"
+                                className="like-icon-fill react-icon"
                                 onClick={()=>onRemoveLike(post._id)}
                             >
-                                <FaHeart className="icon"/><span>{post.like.length}</span>
+                                <FaHeart className="icon icon-like-fill"/><span>{post.like.length}</span>
                             </div>
                         ):(
                             <div
@@ -118,7 +117,7 @@ function PostDetails() {
                         )}
                         
                         <div className="cmt-icon react-icon">
-                            <FaComment className="icon" />  <span>{post.comment.length}</span>
+                            <BsChat className="icon" />  <span>{post.comment.length}</span>
                         </div>
                     </div>
                     <div className="cmt-input-wr">
