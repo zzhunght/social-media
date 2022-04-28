@@ -29,8 +29,10 @@ function PostDetails() {
     const submitCmt = async () =>{
         const form ={
             id:params.id, // id của post
-            user:user._id,
-            text:input
+            user:user._id, // người cmt
+            text:input,
+            owner:post.user._id, // chủ post
+            name:user.lastName // tên ng bình luận
         }
         await cmt(form)
     }

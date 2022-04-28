@@ -75,8 +75,8 @@ const ProfileContextProvider = ({children})=>{
     }
     const addFriend = async (addId) => {
         try {
-           
             const res = await axios.get(`${ApiUrl}/profile/add-friend/${addId}`)
+            console.log(res)
             if(res.data.success){
                 dispath({
                     type: 'ADD_FRIEND',

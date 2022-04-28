@@ -105,12 +105,14 @@ function StrProfile() {
                                 )
                             }
                             
-                            <div className="pr-bio">
-                                <p>{strprofile?.user?.bio}</p>
-                            </div>
                         </div>
+                        
+                    </div>
+                    <div className="pr-bio">
+                        <p>{strprofile?.user?.bio}</p>
                     </div>
                 </div>
+                
                 <div className="pr-post">
                     {strprofile?.posts?.map((post,i) => (
                         <Post post={post} key={i} />

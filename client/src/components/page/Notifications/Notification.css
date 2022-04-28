@@ -17,11 +17,15 @@
     font-weight: 500;
     margin: 0;
 }
-.no-requests-friend {
+.no-requests-friend,.no-notification{
     color: #c1bebe;
 }
 .fr-requests-i {
     display: flex;
+}
+.fr-requests-options {
+    display: flex;
+    height: 30px;
 }
 .fr-requests-i {
     display: flex;
@@ -33,4 +37,37 @@
 .fr-requests-options .add-friend.reject{
     font-size:12px
     
+}
+.all-post-notification {
+    padding: 10px;
+}
+p.all-post-notification-label {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.notice-message {
+    padding: 18px 0;
+    cursor: pointer;
+    position: relative;
+}
+.notice-message::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background:#ffffff;
+    transform:scaleY(0.2)
+}
+.notice-message::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background:#ffffff;
+    transform:scaleY(0.2)
 }

@@ -1,9 +1,21 @@
+import axios from 'axios'
 import React, { useContext } from 'react'
 import { FaCheckCircle, FaUserPlus, FaUserTimes } from 'react-icons/fa'
+import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import {ProfileContext} from '../../../context/profile'
+import { ApiUrl } from '../../../utils/contants'
 import './Notification.css'
 function Notification() {
+
+    const { data} = useQuery('notice',async ()=>{
+        const res = await axios.get(`${ApiUrl}/post/notification`)
+        return res.data
+        
+    //   },{
+    //     refetchInterval:1000
+    //   
+    })
     const {profileState:{myprofile:{friend}},acceptFriend,rejectFriend} = useContext(ProfileContext)
     const onAcceptFriend = async (id)=>{
         await acceptFriend(id)
@@ -59,6 +71,26 @@ function Notification() {
                     Bạn không có lời mời kết bạn nào
                 </p>
             )}
+        </div>
+        <div className="all-post-notification">
+            <p className="all-post-notification-label">Chung</p>
+            {
+                data?.notification && data?.notification.length >0 ?(
+                    <>
+                        {data?.notification.map((n,i) =>(
+                            <div key={i} className="notice">
+                                <div className="notice-message">
+                                    {n.notice}
+                                </div>
+                            </div>
+                        ))}
+                    </>
+                ):(
+                    <p className="no-notification">
+                        Bạn không có thông báo nào
+                    </p>
+                )
+            }
         </div>
     </div>
   )

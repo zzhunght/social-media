@@ -1,6 +1,6 @@
 const io = require("socket.io")(process.env.PORT || 9000, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "http://localhost:3000",// port của client
     },
   });
   io.on("connection", (socket) => {

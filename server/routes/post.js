@@ -1,8 +1,30 @@
 const express = require('express')
 const verifyToken = require('../middleware/auth')
+const Notification = require('../models/notification')
 const { multi_upload } = require('../middleware/upload')
 const route = express.Router()
 const Post = require('../models/post')
+
+// get thông báo
+
+route.get('/notification',verifyToken, async (req, res) => {
+    try {
+        const notification = await Notification.find({user:req.userId})
+        if(notification) return res.status(200).json({
+            success: true,
+            notification
+        })
+        return res.status(200).json({success: true, notification:[]})
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        })
+    }
+})
+
+
 
 //get post 
 route.get('/', async (req,res)=>{
@@ -139,6 +161,8 @@ route.post('/',verifyToken, async (req,res)=>{
         })
     }
 })
+
+//like post
 route.patch('/like',verifyToken, async (req,res)=>{
     console.log(req.body)
     try {
@@ -159,17 +183,37 @@ route.patch('/like',verifyToken, async (req,res)=>{
                     select:'firstName lastName avatar '
                 }
             ])
+
+        //thông báo đến người chủ post
+        const notice = await Notification.findOneAndUpdate({post:req.body.id},{
+            notice:req.body.name + ' vừa thích bài viết của bạn',
+            ready:false,
+            updatedAt: Date.now()
+        })
+        if(!notice) {
+            const newNotice = new Notification({
+                user: req.body.owner,
+                post: req.body.id,
+                notice:req.body.name + ' vừa thích bài viết của bạn',
+                ready:false,
+                updatedAt: Date.now()
+            })
+            await newNotice.save()
+        }
         if(post) return res.status(200).json({
             success: true,
             post,
         })
     } catch (error) {
+        console.log(error.message)
         return res.status(500).json({
             success: false,
             message:'somethings went wrongs'
         })
     }
 })
+
+//xoá like
 route.patch('/remove-like',verifyToken, async (req,res)=>{
     console.log(req.body)
     try {
@@ -201,37 +245,9 @@ route.patch('/remove-like',verifyToken, async (req,res)=>{
         })
     }
 })
-route.patch('/like',verifyToken, async (req,res)=>{
-    console.log(req.body)
-    try {
-        const post = await Post.findOneAndUpdate({_id:req.body.id},{
-            $push:{
-                like:req.body.user
-            }
-            },{new:true}).populate([
-                {
-                    path:'comment',
-                    populate:{
-                        path:'user',
-                        select:'firstName lastName avatar '
-                    }
-                },
-                {
-                    path:'user',
-                    select:'firstName lastName avatar '
-                }
-            ])
-        if(post) return res.status(200).json({
-            success: true,
-            post,
-        })
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message:'somethings went wrongs'
-        })
-    }
-})
+
+
+//bình luận
 route.patch('/cmt',verifyToken, async (req,res)=>{
     const id = req.body.id;
     try {
@@ -255,6 +271,21 @@ route.patch('/cmt',verifyToken, async (req,res)=>{
                     select:'firstName lastName avatar '
                 }
             ])
+        const notice = await Notification.findOneAndUpdate({post:req.body.id},{
+            notice:req.body.name + ' vừa bình luận về bài viết của bạn',
+            ready:false,
+            updatedAt: Date.now()
+        })
+        if(!notice) {
+            const newNotice = new Notification({
+                user: req.body.owner,
+                post: req.body.id,
+                notice:req.body.name + ' vừa bình luận về bài viết của bạn',
+                ready:false,
+                updatedAt: Date.now()
+            })
+            await newNotice.save()
+        }
         if(post) return res.status(200).json({
             success: true,
             post,

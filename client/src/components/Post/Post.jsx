@@ -12,7 +12,6 @@ import ImageShow from '../Modal/ImageShow'
 function Post({post}) {
     const [showModal,setShowModal] = useState(false)
 
-
     // lưu path ảnh để truyền đến modal
     const [image,setImage] = useState('')
     const {likePost,removeLike} = useContext(PostContext)
@@ -24,10 +23,15 @@ function Post({post}) {
         setShowModal(true)
     }
     const onClickLike = async (id)=>{
-        await likePost(id,user._id)
+        const owner = post.user._id
+        const name = user.lastName
+        await likePost(id,user._id,owner,name)
     }
     const onRemoveLike = async (id)=>{
-        await removeLike(id,user._id)
+        const owner = post.user._id
+        const name = user.lastName
+
+        await removeLike(id,user._id,owner,name)
     }
     return (
     <>

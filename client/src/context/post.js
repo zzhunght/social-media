@@ -69,9 +69,11 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
-    const likePost = async (id,user) =>{
+    const likePost = async (id,user,owner,name) =>{
+        // id:id của post , user: người like, name:tên ng like , owner : chủ của post
+
         try {
-            const res = await axios.patch(`${ApiUrl}/post/like`,{id,user})
+            const res = await axios.patch(`${ApiUrl}/post/like`,{id,user,owner,name})
 
             if(res.data.success){
                 dispath({
@@ -112,9 +114,10 @@ const PostContextProvider = ({children})=>{
             }
         }
     }
-    const removeLike = async (id,user) =>{
+    const removeLike = async (id,user,owner,name) =>{
+        // id:id của post , user: người like, name:tên ng like , owner : chủ của post
         try {
-            const res = await axios.patch(`${ApiUrl}/post/remove-like`,{id,user})
+            const res = await axios.patch(`${ApiUrl}/post/remove-like`,{id,user,owner,name})
             if(res.data.success){
                 dispath({
                     type: 'REMOVE_LIKE_POST',
