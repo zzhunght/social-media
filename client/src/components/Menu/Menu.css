@@ -32,11 +32,12 @@
     padding:13px 0;
 }
 p.menu-item-label {
-    margin: 0;
-    font-size: 16px;
+    align-items: center;
     color: #fff;
     display: flex;
-    align-items: center;
+    font-size: 16px;
+    margin: 0;
+    cursor: pointer;
 }
 .menu-item-icon{
     margin-right: 10px;

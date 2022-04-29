@@ -156,6 +156,7 @@ input[type="file"]{
     font-weight: 500;
     height: 30px;
     line-height: 30px;
+    cursor: pointer;
 }
 .show-image-choose {
     padding: 10px;
@@ -174,6 +175,7 @@ button.submit-post {
     background: #03c4ff;
     color: #fff;
     font-size: 20px;
+    cursor: pointer;
 }
 button.submit-post.loading{
     opacity: 0.7
