@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useRef} from "react";
 import { io } from "socket.io-client";
 import { MesContext } from "./mes";
-
+import {socketUrl} from '../utils/contants'
 
 
 export const SocketContext = createContext()
@@ -13,7 +13,7 @@ const SocketContextProvider = ({children})=>{
         socket.current.emit("client-send-mes",data)
     }
     useEffect(() => {
-        socket.current = io('http://localhost:9000')
+        socket.current = io(socketUrl)
         socket.current.on("mes-from-server", (data) => {
             console.log(data)
             chatRealTime(data)
