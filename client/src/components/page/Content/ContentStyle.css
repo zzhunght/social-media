@@ -5,6 +5,7 @@
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     overflow-x: hidden;
+    position: relative;
 }
 .main::-webkit-scrollbar {
     display: none;
@@ -44,4 +45,17 @@
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+}
+.scroll-to-top {
+    position: absolute;
+    bottom: 10%;
+    right: 4%;
+    background: #199ee0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
 }

@@ -27,6 +27,7 @@
     outline-width: 0.2px;
     outline-color: #1289fc5e;
     box-sizing: border-box;
+    color: #000;
 }
 .form-group input::placeholder{
     letter-spacing: 0.4px;

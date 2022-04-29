@@ -43,7 +43,7 @@ function ListPost() {
             <div className="message">
                 {message}
             </div>
-            <div ref={ref}>
+            <div ref={ref} className="ref">
             </div>
             
         </div>

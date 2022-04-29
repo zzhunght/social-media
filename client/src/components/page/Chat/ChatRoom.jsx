@@ -7,9 +7,10 @@ import { AuthContext } from '../../../context/auth'
 import setAuthToken, { accessToken, ApiUrl } from '../../../utils/contants'
 import NavChat from '../../Nav/NavChat'
 import './ChatRoom.css'
+import { LoadingOutlined } from '@ant-design/icons'
 function ChatRoom() {
   const {authState:{user,isAuthenticated}} = useContext(AuthContext)
-  const { data} = useQuery('cvs',async ()=>{
+  const { data,isLoading} = useQuery('cvs',async ()=>{
     if(isAuthenticated){
       setAuthToken(localStorage.getItem(accessToken))
       const res = await axios.get(`${ApiUrl}/conversation`)
@@ -58,12 +59,21 @@ function ChatRoom() {
                   ))}
                 </>
               ):(
-                <div className="empty-conversation">
-                    Bạn Không có cuộc trò chuyện nào
-                </div>
+                <>
+                  {!isLoading && (
+                    <div className="empty-conversation">
+                      Bạn Không có cuộc trò chuyện nào
+                    </div>
+                  )}
+                </>
               )}
             </motion.div>
         </div>
+        {isLoading && (
+          <div className="loading-post">
+            <LoadingOutlined className="loading-icon" />
+        </div>
+        )}
     </div>
   )
 }

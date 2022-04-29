@@ -41,26 +41,30 @@ function Search() {
           </div>
           <div className="list-users">
             {results && results.length > 0 && 
-              results?.map((u,i)=>(
-                <div className="search-item-user" key={i}>
-                  <div className="search-item-user-avatar">
-                      <img src={`${u?.avatar || 'avatar.jpg'}`} alt="avatar"  />
+              results?.map((u,i)=> (
+                <>
+                <div className="s-i-u-w">
+                  <div className="search-item-user" key={i}>
+                    <div className="search-item-user-avatar">
+                        <img src={`${u?.avatar || 'avatar.jpg'}`} alt="avatar"  />
+                    </div>
+                    <Link className="search-item-user-info" to={`/${u?._id === user?._id ? 'my-profile':`profile/${u?._id}`}`}>
+                        <div className="search-item-user-name">
+                            {u?.firstName} {u?.lastName}
+                            <span  className="check-icon"><FaCheckCircle/></span>
+                        </div>
+                        <div className="search-item-user-sub-name">
+                            @{u?.firstName}{u?.lastName}
+                        </div>
+                    </Link>
                   </div>
-                  <Link className="search-item-user-info" to={`/${u?._id === user?._id ? 'my-profile':`profile/${u?._id}`}`}>
-                      <div className="search-item-user-name">
-                          {u?.firstName} {u?.lastName}
-                          <span  className="check-icon"><FaCheckCircle/></span>
-                      </div>
-                      <div className="search-item-user-sub-name">
-                          @{u?.firstName}{u?.lastName}
-                      </div>
-                  </Link>
                   {u?.bio && (
                     <div className="search-user-bio">
                       {u.bio}
                     </div>
                   )}
-              </div>
+                </div>
+                </>
               ))
             }
           </div>

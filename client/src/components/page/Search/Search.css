@@ -29,7 +29,7 @@ input.search-input {
 }
 .search-item-user {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .search-item-user-avatar{
     width: 46px;
@@ -52,4 +52,7 @@ input.search-input {
 .search-item-user-sub-name{
     font-size:13px;
     color: #ccc;
+}
+.s-i-u-w {
+    margin-bottom: 20px;
 }

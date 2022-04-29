@@ -137,6 +137,7 @@ textarea {
     border: none;
     font-size: 14px;
     text-indent: 5px;
+    color: #000;
 }
 textarea::placeholder{
     font-size:20px;
@@ -148,7 +149,7 @@ input[type="file"]{
     width: 100%;
     margin: 0 auto;
     display: block;
-    background: #efefef;
+    background: #000;
     text-align: center;
     border-radius: 5px;
     font-size: 15px;

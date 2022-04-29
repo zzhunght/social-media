@@ -3,13 +3,15 @@ import React, { useContext,useState } from 'react'
 import { Col, Row } from 'antd'
 import {FaRegHeart,FaHeart,FaCheckCircle} from "react-icons/fa";
 import {BsChat} from 'react-icons/bs'
-import {Link } from 'react-router-dom'
+import {Link, useLocation } from 'react-router-dom'
 import ReactTimeAgo from 'react-time-ago'
 import { PostContext } from '../../context/post';
 import { AuthContext } from '../../context/auth';
 import ImageShow from '../Modal/ImageShow'
 
 function Post({post}) {
+    const location = useLocation()
+
     const [showModal,setShowModal] = useState(false)
 
     // lưu path ảnh để truyền đến modal

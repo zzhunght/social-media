@@ -78,11 +78,11 @@ function Notification() {
                 data?.notification && data?.notification.length >0 ?(
                     <>
                         {data?.notification.map((n,i) =>(
-                            <div key={i} className="notice">
+                            <Link to={`/post/${n.post}`} key={i} className="notice">
                                 <div className="notice-message">
                                     {n.notice}
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </>
                 ):(

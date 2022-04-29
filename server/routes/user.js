@@ -55,7 +55,7 @@ route.post('/register', async (req,res) =>{
         if(user){
             return res.status(400).json({
                 success:false,
-                message:'user already used'
+                message:'email này đã được sử dụng'
             })
         }
 
@@ -115,7 +115,7 @@ route.post('/login',async (req,res) => {
 
         if(!user) return res.status(401).json({
             success:false,
-            message:'Incorrect email or password'
+            message:'Tài khoản hoặc mật khẩu không chính xác'
         })
         const verifyPassword = await argon2.verify(user.password,password)
 
@@ -136,7 +136,7 @@ route.post('/login',async (req,res) => {
         else{
             res.status(401).json({
                 success:false,
-                message:'Incorrect email or password'
+                message:'Tài khoản hoặc mật khẩu không chính xác'
             })
         }
     } catch (error) {

@@ -1,9 +1,11 @@
+import { LoadingOutlined } from '@ant-design/icons'
 import { message } from 'antd'
 import React,{useContext, useState} from 'react'
 import {Link } from 'react-router-dom'
 import { AuthContext } from '../../context/auth'
 import './FormStyle.css'
 function LoginForm() {
+    const [loading,setLoading] = useState(false)
     const {loginUser} = useContext(AuthContext)
     const [user,setUser] = useState({
         email:'',
@@ -16,11 +18,12 @@ function LoginForm() {
         })
     }
     const onSubmit = async ()=>{
+        setLoading(true)
         const res = await loginUser(user)
-        console.log(res)
         if(!res.success) {
-            message.error(res||'Tài khoản hoặc mật khẩu không chính xác')
+            message.error(res.message ||'Tài khoản hoặc mật khẩu không chính xác')
         }
+        setLoading(false)
     }
     return (
     <div className="form">
@@ -46,8 +49,9 @@ function LoginForm() {
         <button
          className="btn btn-primary"
          onClick={onSubmit}
+         disabled={loading}
         > 
-            Đăng Nhập 
+            {loading ? <LoadingOutlined />: 'Đăng Nhập '} 
         </button>
         <hr />
         <button className="btn btn-primary register">

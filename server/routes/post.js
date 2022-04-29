@@ -297,4 +297,17 @@ route.patch('/cmt',verifyToken, async (req,res)=>{
         })
     }
 })
+
+//xoá post 
+
+route.delete('/:id',verifyToken, async (req,res)=>{
+    try {
+        await Post.findOneAndDelete({_id:req.params.id})
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:'somethings went wrongs'
+        })
+    }
+})
 module.exports = route
