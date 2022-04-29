@@ -1,7 +1,7 @@
 import axios from "axios";
 export const accessToken = 'AccessToken'
 export const ApiUrl = 'https://server-38-node.herokuapp.com/api'
-export const BaseUrl = 'http://localhost:5000'
+export const BaseUrl = 'https://server-38-node.herokuapp.com'
 
 // server deploy trên heroku
 const herokuUrl = 'https://server-38-node.herokuapp.com/api'
